@@ -17,36 +17,65 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
             ->setMethods(array('getControllerAction'))
             ->getMock();
 
-        $event->expects($this->once())->method('getControllerAction')->will($this->returnValue($controller));
+        $event->expects($this->once())
+            ->method('getControllerAction')
+            ->will($this->returnValue($controller));
 
         return $event;
     }
 
     protected function getMockController($forFailure = true)
     {
+        // Mock Response
         $response = $this->getMockBuilder('Mage_Contacts_IndexController')
             ->disableOriginalConstructor()
             ->setMethods(array('setRedirect', 'sendResponse'))
             ->getMock();
 
-        $response->expects($forFailure ? $this->once() : $this->never())->method('setRedirect')->will($this->returnSelf());
-        $response->expects($forFailure ? $this->once() : $this->never())->method('sendResponse')->will($this->returnSelf());
+        // setRedirect call
+        $response->expects($forFailure ? $this->once() : $this->never())
+            ->method('setRedirect')
+            ->with($this->equalTo('/contacts'))
+            ->will($this->returnSelf());
 
+        // sendResponse call
+        $response->expects($forFailure ? $this->once() : $this->never())
+            ->method('sendResponse')
+            ->will($this->returnSelf());
+
+        // Mock Request
         $request = $this->getMockBuilder('Zend_Controller_Request_Abstract')
             ->disableOriginalConstructor()
             ->setMethods(array('setDispatched'))
             ->getMock();
 
-        $request->expects($forFailure ? $this->once() : $this->never())->method('setDispatched')->will($this->returnSelf());
+        // setDispatched call
+        $request->expects($forFailure ? $this->once() : $this->never())
+            ->method('setDispatched')
+            ->with($this->equalTo(true))
+            ->will($this->returnSelf());
 
+        // Mock Controller
         $controller = $this->getMockBuilder('Mage_Core_Controller_Front_Action')
             ->disableOriginalConstructor()
             ->setMethods(array('getResponse', 'getRequest', 'setFlag'))
             ->getMock();
 
-        $controller->expects($forFailure ? $this->once() : $this->never())->method('getResponse')->will($this->returnValue($response));
-        $controller->expects($forFailure ? $this->once() : $this->never())->method('getRequest')->will($this->returnValue($request));
-        $controller->expects($forFailure ? $this->once() : $this->never())->method('setFlag')->will($this->returnSelf());
+        // getResponse call
+        $controller->expects($forFailure ? $this->once() : $this->never())
+            ->method('getResponse')
+            ->will($this->returnValue($response));
+
+        // getRequest call
+        $controller->expects($forFailure ? $this->once() : $this->never())
+            ->method('getRequest')
+            ->will($this->returnValue($request));
+
+        // setFlag call
+        $controller->expects($forFailure ? $this->once() : $this->never())
+            ->method('setFlag')
+            ->with($this->equalTo(''), $this->equalTo(Mage_Core_Controller_Front_Action::FLAG_NO_DISPATCH), $this->equalTo(true))
+            ->will($this->returnSelf());
 
         return $controller;
     }
@@ -54,8 +83,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
     protected function getMockHelper($response)
     {
         $helper = $this->getHelperMock('studioforty9_recaptcha/request', array('verify'), false, array(), null, false);
-        $helper
-            ->expects($this->once())
+        $helper->expects($this->once())
             ->method('verify')
             ->will($this->returnValue($response));
 

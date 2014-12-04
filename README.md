@@ -2,9 +2,14 @@
 
 ## Installation
 
-### Modman
-
 ### Composer
+
+Add the repository to your project composer.json file:
+
+        "repositories": [
+              {"type": "composer", "url": "http://packages.firegento.com"},
+              {"type": "vcs", "url": "http://github.com/studioforty9/recaptcha"}
+          ],
 
 ## Configuration
 
@@ -28,4 +33,8 @@ The Contacts module that ships with Magento is fairly rudimentary and hasn't bee
 
 ## Contributing
 
+Details to follow.
+
 ## Licence
+
+MIT (see LICENCE file)

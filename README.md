@@ -16,15 +16,15 @@ The Contacts module that ships with Magento is fairly rudimentary and hasn't bee
 
 1. Open your local.xml file for your theme and paste in the following:
     
-    <contacts_index_index>
-      <reference name="contactForm">
-        <block name="sstudioforty9_recaptcha/autorender" name="studioforty9.recaptcha.autorender" template="studioforty9/recaptcha/autorender.phtml"/>
-      </reference>
-    </contacts_index_index>
+        <contacts_index_index>
+          <reference name="contactForm">
+            <block name="sstudioforty9_recaptcha/autorender" name="studioforty9.recaptcha.autorender" template="studioforty9/recaptcha/autorender.phtml"/>
+          </reference>
+        </contacts_index_index>
     
 2. Next, copy the /contacts/form.phtml template over to your theme, if you haven't already done so, just above the `buttons-set` div paste in the following code:
 
-    <?php echo $this->getChildHtml('studioforty9.recaptcha.autorender'); ?>
+        <?php echo $this->getChildHtml('studioforty9.recaptcha.autorender'); ?>
 
 ## Contributing
 

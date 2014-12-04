@@ -11,6 +11,9 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
      */
     public function onContactsPostPreDispatch(Varien_Event_Observer $observer)
     {
+        /** @var Mage_Contacts_IndexController $controller */
+        $controller = $observer->getEvent()->getControllerAction();
+
         $request = Mage::helper('studioforty9_recaptcha/request');
         $response = $request->verify();
 
@@ -18,8 +21,12 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
             Mage::getSingleton('core/session')->addError(
                 $request->__('There was an error with the recaptcha code, please try again.')
             );
-            
-            return Mage::app()->getResponse()->setRedirect('/contacts')->sendResponse();
+
+            $controller->getRequest()->setDispatched(true);
+            $controller->setFlag('', Mage_Core_Controller_Front_Action::FLAG_NO_DISPATCH, true);
+            $controller->getResponse()->setRedirect('/contacts')->sendResponse();
+
+            return $controller;
         }
 
         return $observer;

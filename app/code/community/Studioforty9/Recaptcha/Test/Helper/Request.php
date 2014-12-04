@@ -35,7 +35,7 @@ class Studioforty9_Recaptcha_Test_Helper_Request extends EcomDev_PHPUnit_Test_Ca
     /**
      * Get a mock request object with the response value already set.
      *
-     * @param string $$response
+     * @param string $response
      * @return Mock_Http_Client
      */
     protected function getMockRequest($response)

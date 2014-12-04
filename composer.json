@@ -1,0 +1,26 @@
+{
+  "name": "studioforty9/recaptcha",
+  "description": "Magento Module for the most recent version of Google reCAPTCHA.",
+  "type": "magento-module",
+  "homepage": "https://github.com/studioforty9/recaptcha",
+  "license": "MIT",
+  "keywords": ["captcha"],
+  "authors": [
+    {
+      "name": "StudioForty9",
+      "homepage": "http://www.studioforty9.com/",
+      "role": "owner"
+    },
+    {
+      "name": "Eoghan O'Brien",
+      "homepage": "http://github.com/eoghanobrien/",
+      "role": "developer"
+    }
+  ],
+  "require": {
+    "magento-hackathon/magento-composer-installer": "2.*"
+  },
+  "require-dev": {
+    "ecomdev/ecomdev_phpunit": "*"
+  }
+}

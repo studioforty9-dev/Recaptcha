@@ -1,3 +1,5 @@
+.idea/*
+.settings/*
 .modgit/
 app/code/community/Phoenix/
 app/code/community/Cm/

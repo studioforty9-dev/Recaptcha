@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Studioforty9_Recaptcha>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Studioforty9_Recaptcha>
+    </modules>
+</config>

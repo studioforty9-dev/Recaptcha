@@ -23,7 +23,7 @@ The Contacts module that ships with Magento is fairly rudimentary and hasn't bee
     
         <contacts_index_index>
           <reference name="contactForm">
-            <block name="sstudioforty9_recaptcha/autorender" name="studioforty9.recaptcha.autorender" template="studioforty9/recaptcha/autorender.phtml"/>
+            <block type="studioforty9_recaptcha/autorender" name="studioforty9.recaptcha.autorender" template="studioforty9/recaptcha/autorender.phtml"/>
           </reference>
         </contacts_index_index>
     

@@ -27,7 +27,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
     protected function getMockController($forFailure = true)
     {
         // Mock Response
-        $response = $this->getMockBuilder('Mage_Contacts_IndexController')
+        $response = $this->getMockBuilder('Zend_Controller_Response_Abstract')
             ->disableOriginalConstructor()
             ->setMethods(array('setRedirect', 'sendResponse'))
             ->getMock();
@@ -144,6 +144,9 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
 
         // Run the observer
         $result = $this->observer->onContactsPostPreDispatch($observer);
+
+        // If all went to plan, we should have our controller back
+        $this->assertInstanceOf('Mage_Core_Controller_Front_Action', $result);
 
         // Does the session mock have a new message?
         $this->assertEquals(

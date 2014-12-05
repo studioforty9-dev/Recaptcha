@@ -71,7 +71,7 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
      */
     public function isSuccess()
     {
-        return $this->_success;
+        return ($this->_success === true);
     }
 
     /**
@@ -81,7 +81,7 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
      */
     public function isFailure()
     {
-        return !$this->_success;
+        return !$this->isSuccess();
     }
 
     /**
@@ -105,7 +105,7 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
         foreach ($this->_errorCodes as $errorCode) {
             $errors[] = $this->getErrorDescription($errorCode);
         }
-        
+
         return $errors;
     }
 

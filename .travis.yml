@@ -16,9 +16,3 @@ env:
   - MAGENTO_VERSION=magento-ce-1.7.0.2
 script:
   - curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash
-notifications:
-  email:
-    recipients:
-      - eoghan@studioforty9.com
-    on_success: always
-    on_failure: always

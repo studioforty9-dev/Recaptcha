@@ -2,3 +2,4 @@ app/code/community/Studioforty9/Recaptcha/                   	        app/code/c
 app/design/frontend/base/default/template/studioforty9/*    	        app/design/frontend/base/default/template/studioforty9
 app/design/frontend/base/default/layout/studioforty9_recaptcha.xml    	app/design/frontend/base/default/layout/studioforty9_recaptcha.xml
 app/etc/modules/Studioforty9_Recaptcha.xml          		            app/etc/modules/Studioforty9_Recaptcha.xml
+app/locale/en_US/Studioforty9_Recaptcha.csv                             app/locale/en_US/Studioforty9_Recaptcha.csv

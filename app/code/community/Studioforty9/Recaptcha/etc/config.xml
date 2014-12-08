@@ -25,11 +25,20 @@
     <frontend>
         <layout>
             <updates>
-                <studioforty9>
+                <studioforty9_recaptcha>
                     <file>studioforty9_recaptcha.xml</file>
-                </studioforty9>
+                </studioforty9_recaptcha>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <studioforty9_recaptcha>
+                    <files>
+                        <default>Studioforty9_Recaptcha.csv</default>
+                    </files>
+                </studioforty9_recaptcha>
+            </modules>
+        </translate>
         <events>
             <controller_action_predispatch_contacts_index_post>
                 <observers>

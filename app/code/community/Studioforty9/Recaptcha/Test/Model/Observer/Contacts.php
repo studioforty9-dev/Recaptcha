@@ -144,7 +144,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
         $sessionMock = $this->replaceSession('core/session');
 
         // Mock the required objects
-        $response = new Studioforty9_Recaptcha_Helper_Response(false);
+        $response = new Studioforty9_Recaptcha_Helper_Response(false, array('missing-input-response'));
         $observer = $this->getMockObserver($response);
 
         // Run the observer

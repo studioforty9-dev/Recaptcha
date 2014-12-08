@@ -25,6 +25,11 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
             Mage::getSingleton('core/session')->addError(
                 $request->__('There was an error with the recaptcha code, please try again.')
             );
+
+            if ($response->hasErrors()) {
+                $this->_logErrors($response);
+            }
+
             $redirectUrl = $controller->getRequest()->getBaseUrl() . '/contacts';
             $controller->getResponse()->setRedirect($redirectUrl)->sendResponse();
             $controller->getRequest()->setDispatched(true);
@@ -34,5 +39,15 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
         }
 
         return $observer;
+    }
+
+    protected function _logErrors(Studioforty9_Recaptcha_Helper_Response $response)
+    {
+        Mage::log(
+            sprintf(
+                'reCAPTCHA Errors: %1$s',
+                implode(', ', $response->getErrors())
+            )
+        );
     }
 }

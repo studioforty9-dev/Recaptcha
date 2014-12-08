@@ -2,9 +2,9 @@
 
 class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    const MODULE_ENABLED = 'studioforty9_recaptcha/settings/enabled';
-    const MODULE_KEY_SITE = 'studioforty9_recaptcha/settings/site_key';
-    const MODULE_KEY_SECRET = 'studioforty9_recaptcha/settings/secret_key';
+    const MODULE_ENABLED = 'google/recaptcha/enabled';
+    const MODULE_KEY_SITE = 'google/recaptcha/site_key';
+    const MODULE_KEY_SECRET = 'google/recaptcha/secret_key';
 
     /**
      * Is the module enabled in configuration

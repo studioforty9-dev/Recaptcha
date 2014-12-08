@@ -1,20 +1,12 @@
 <?xml version="1.0"?>
 <config>
     <sections>
-        <studioforty9_recaptcha translate="label title" module="studioforty9_recaptcha">
-            <title>ReCaptcha</title>
-            <label>ReCaptcha</label>
-            <tab>general</tab>
-            <frontend_type>text</frontend_type>
-            <sort_order>3000</sort_order>
-            <show_in_default>1</show_in_default>
-            <show_in_website>1</show_in_website>
-            <show_in_store>1</show_in_store>
+        <google>
             <groups>
-                <settings translate="label">
-                    <label>ReCaptcha Settings</label>
+                <recaptcha translate="label title" module="studioforty9_recaptcha">
+                    <label>Google ReCaptcha</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>10</sort_order>
+                    <sort_order>1000</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -45,8 +37,8 @@
                             <show_in_store>1</show_in_store>
                         </secret_key>
                     </fields>
-                </settings>
+                </recaptcha>
             </groups>
-        </studioforty9_recaptcha>
+        </google>
     </sections>
 </config>

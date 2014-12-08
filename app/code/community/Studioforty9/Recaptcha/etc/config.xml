@@ -56,13 +56,13 @@
         </acl>
     </adminhtml>
     <default>
-        <studioforty9_recaptcha>
-            <settings>
+        <google>
+            <recaptcha>
                 <enabled>0</enabled>
                 <site_key></site_key>
                 <secret_key></secret_key>
-            </settings>
-        </studioforty9_recaptcha>
+            </recaptcha>
+        </google>
     </default>
     <phpunit>
         <suite>

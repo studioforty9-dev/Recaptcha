@@ -25,8 +25,8 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
             Mage::getSingleton('core/session')->addError(
                 $request->__('There was an error with the recaptcha code, please try again.')
             );
-
-            $controller->getResponse()->setRedirect('/contacts')->sendResponse();
+            $redirectUrl = $controller->getRequest()->getBaseUrl() . '/contacts';
+            $controller->getResponse()->setRedirect($redirectUrl)->sendResponse();
             $controller->getRequest()->setDispatched(true);
             $controller->setFlag('', Mage_Core_Controller_Front_Action::FLAG_NO_DISPATCH, true);
 

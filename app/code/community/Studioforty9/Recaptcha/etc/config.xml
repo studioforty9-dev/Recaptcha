@@ -23,6 +23,13 @@
         </models>
     </global>
     <frontend>
+        <layout>
+            <updates>
+                <studioforty9>
+                    <file>studioforty9_recaptcha.xml</file>
+                </studioforty9>
+            </updates>
+        </layout>
         <events>
             <controller_action_predispatch_contacts_index_post>
                 <observers>

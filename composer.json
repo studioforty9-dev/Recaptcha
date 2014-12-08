@@ -1,6 +1,6 @@
 {
   "name": "studioforty9/recaptcha",
-  "description": "Magento Module for the most recent version of Google reCAPTCHA.",
+  "description": "Magento Module for Google reCAPTCHA.",
   "type": "magento-module",
   "homepage": "https://github.com/studioforty9/recaptcha",
   "license": "MIT",

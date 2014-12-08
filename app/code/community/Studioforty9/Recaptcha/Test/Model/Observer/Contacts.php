@@ -35,7 +35,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
         // setRedirect call
         $response->expects($forFailure ? $this->once() : $this->never())
             ->method('setRedirect')
-            ->with($this->equalTo('/contacts'))
+            ->with($this->equalTo(Mage::getBaseUrl() . '/contacts'))
             ->will($this->returnSelf());
 
         // sendResponse call
@@ -46,7 +46,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
         // Mock Request
         $request = $this->getMockBuilder('Zend_Controller_Request_Abstract')
             ->disableOriginalConstructor()
-            ->setMethods(array('setDispatched'))
+            ->setMethods(array('setDispatched', 'getBaseUrl'))
             ->getMock();
 
         // setDispatched call
@@ -54,6 +54,11 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
             ->method('setDispatched')
             ->with($this->equalTo(true))
             ->will($this->returnSelf());
+
+        // getBaseUrl call
+        $request->expects($forFailure ? $this->once() : $this->never())
+            ->method('getBaseUrl')
+            ->will($this->returnValue(Mage::getBaseUrl()));
 
         // Mock Controller
         $controller = $this->getMockBuilder('Mage_Core_Controller_Front_Action')
@@ -67,7 +72,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
             ->will($this->returnValue($response));
 
         // getRequest call
-        $controller->expects($forFailure ? $this->once() : $this->never())
+        $controller->expects($forFailure ? $this->exactly(2) : $this->never())
             ->method('getRequest')
             ->will($this->returnValue($request));
 

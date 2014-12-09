@@ -54,6 +54,6 @@ class Studioforty9_Recaptcha_Block_Autorender extends Mage_Core_Block_Template
             $helper->getSiteKey()
         );
 
-        return $this->escapeHtml($html);
+        return $html;
     }
 }

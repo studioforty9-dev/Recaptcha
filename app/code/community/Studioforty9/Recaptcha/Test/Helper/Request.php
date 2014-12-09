@@ -27,7 +27,7 @@ class Studioforty9_Recaptcha_Test_Helper_Request extends EcomDev_PHPUnit_Test_Ca
             ->setMethods(array('getBody'))
             ->getMock();
         
-        $response->method('getBody')->will($this->returnValue($body));
+        $response->expects($this->any())->method('getBody')->will($this->returnValue($body));
         
         return $response;
     }

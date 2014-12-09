@@ -17,7 +17,7 @@ class Studioforty9_Recaptcha_Test_Model_Source_Theme extends EcomDev_PHPUnit_Tes
         $this->assertArrayHasKey('light', $options);
         $this->assertArrayHasKey('dark', $options);
 
-        $this->assertEquals($this->__('Light'), $options['light']);
-        $this->assertEquals($this->__('Dark'), $options['dark']);
+        $this->assertEquals('Light', $options['light']);
+        $this->assertEquals('Dark', $options['dark']);
     }
 }

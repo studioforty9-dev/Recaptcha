@@ -10,8 +10,8 @@ class Studioforty9_Recaptcha_Model_Source_Theme
     public function toOptionArray()
     {
         return array(
-            'light' => 'Light',
-            'dark'  => 'Dark'
+            'light' => $this->__('Light'),
+            'dark'  => $this->__('Dark')
         );
     }
 }

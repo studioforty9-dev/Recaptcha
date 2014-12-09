@@ -1,5 +1,24 @@
 <?php
+/**
+ * Studioforty9_Recaptcha
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Recaptcha
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/recaptcha
+ */
 
+/**
+ * Mock_Http_Client
+ *
+ * @category   Studioforty9
+ * @package    Studioforty9_Recaptcha
+ * @subpackage Test
+ * @author     StudioForty9 <info@studioforty9.com>
+ */
 class Mock_Http_Client extends Varien_Http_Client
 {
     protected function _trySetCurlAdapter()
@@ -9,6 +28,14 @@ class Mock_Http_Client extends Varien_Http_Client
     }
 }
 
+/**
+ * Studioforty9_Recaptcha_Test_Helper_Request
+ *
+ * @category   Studioforty9
+ * @package    Studioforty9_Recaptcha
+ * @subpackage Test
+ * @author     StudioForty9 <info@studioforty9.com>
+ */
 class Studioforty9_Recaptcha_Test_Helper_Request extends EcomDev_PHPUnit_Test_Case
 {
     /** @var Studioforty9_Recaptcha_Helper_Request $helper */

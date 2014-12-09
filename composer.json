@@ -3,7 +3,7 @@
   "description": "Magento Module for Google reCAPTCHA.",
   "type": "magento-module",
   "homepage": "https://github.com/studioforty9/recaptcha",
-  "license": "MIT",
+  "license": "BSD",
   "keywords": ["captcha"],
   "authors": [
     {

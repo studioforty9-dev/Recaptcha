@@ -6,7 +6,7 @@
  * @package   Studioforty9_Recaptcha
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
- * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE MIT
+ * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
  * @version   1.0.0
  * @link      https://github.com/studioforty9/recaptcha
  */
@@ -41,16 +41,19 @@ class Studioforty9_Recaptcha_Block_Autorender extends Mage_Core_Block_Template
      */
     public function getRecaptchaHtml()
     {
+        /** @var Studioforty9_Recaptcha_Helper_Data $helper */
         $helper = Mage::helper('studioforty9_recaptcha');
 
         if (! $helper->isEnabled()) {
             return '';
         }
 
-        return sprintf(
+        $html = sprintf(
             '<div class="g-recaptcha" data-theme="%s" data-sitekey="%s"></div>',
             $helper->getTheme(),
             $helper->getSiteKey()
         );
+
+        return $this->escapeHtml($html);
     }
 }

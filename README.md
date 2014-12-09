@@ -30,8 +30,8 @@ Add the repository to your project composer.json file:
 
 ## Contributing
 
-Details to follow.
+[see CONTRIBUTING file](https://github.com/studioforty9/recaptcha/blob/master/CONTRIBUTING.md))
 
 ## Licence
 
-MIT (see LICENCE file)
+BSD ([see LICENCE file](https://github.com/studioforty9/recaptcha/blob/master/LICENCE))

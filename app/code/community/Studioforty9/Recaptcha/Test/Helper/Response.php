@@ -1,5 +1,24 @@
 <?php
+/**
+ * Studioforty9_Recaptcha
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Recaptcha
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/recaptcha
+ */
 
+/**
+ * Studioforty9_Recaptcha_Test_Helper_Response
+ *
+ * @category   Studioforty9
+ * @package    Studioforty9_Recaptcha
+ * @subpackage Test
+ * @author     StudioForty9 <info@studioforty9.com>
+ */
 class Studioforty9_Recaptcha_Test_Helper_Response extends EcomDev_PHPUnit_Test_Case
 {
     /** @var Studioforty9_Recaptcha_Helper_Response $helper */
@@ -16,12 +35,6 @@ class Studioforty9_Recaptcha_Test_Helper_Response extends EcomDev_PHPUnit_Test_C
         $helper = new Studioforty9_Recaptcha_Helper_Response(false);
         $this->assertTrue($helper->isFailure());
     }
-    
-    /*public function test_can_construct_with_success_false()
-    {
-        $helper = new Studioforty9_Recaptcha_Helper_Response(false);
-        $this->assertTrue($helper->isFailure());
-    }*/
     
     public function test_error_code_strings_are_correct()
     {

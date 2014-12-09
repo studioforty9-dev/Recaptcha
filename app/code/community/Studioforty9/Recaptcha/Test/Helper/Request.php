@@ -69,7 +69,7 @@ class Studioforty9_Recaptcha_Test_Helper_Request extends EcomDev_PHPUnit_Test_Ca
     public function test_verify_with_missing_secret_key()
     {
         // Create a mock request object and replace the one stored in the registry
-        Mage::app()->getRequest()->setPost(Studioforty9_Recaptcha_Helper_Request::REQUEST_RESPONSE_INDEX, 'test');
+        Mage::app()->getRequest()->setPost(Studioforty9_Recaptcha_Helper_Request::REQUEST_RESPONSE, 'test');
         $mockResponse = $this->getMockResponse('{"success":false,"error-codes": ["missing-input-secret"]}');
         $mockRequest  = $this->getMockRequest($mockResponse);
         
@@ -87,7 +87,7 @@ class Studioforty9_Recaptcha_Test_Helper_Request extends EcomDev_PHPUnit_Test_Ca
     public function test_verify_with_invalid_secret_key()
     {
         // Create a mock request object and replace the one stored in the registry
-        Mage::app()->getRequest()->setPost(Studioforty9_Recaptcha_Helper_Request::REQUEST_RESPONSE_INDEX, 'test');
+        Mage::app()->getRequest()->setPost(Studioforty9_Recaptcha_Helper_Request::REQUEST_RESPONSE, 'test');
         $mockResponse = $this->getMockResponse('{"success":false,"error-codes": ["invalid-input-secret"]}');
         $mockRequest  = $this->getMockRequest($mockResponse);
         
@@ -105,7 +105,7 @@ class Studioforty9_Recaptcha_Test_Helper_Request extends EcomDev_PHPUnit_Test_Ca
     public function test_verify_with_missing_input_response()
     {
         // Create a mock request object and replace the one stored in the registry
-        Mage::app()->getRequest()->setPost(Studioforty9_Recaptcha_Helper_Request::REQUEST_RESPONSE_INDEX, 'test');
+        Mage::app()->getRequest()->setPost(Studioforty9_Recaptcha_Helper_Request::REQUEST_RESPONSE, 'test');
         $mockResponse = $this->getMockResponse('{"success":false,"error-codes": ["missing-input-response"]}');
         $mockRequest  = $this->getMockRequest($mockResponse);
         
@@ -123,7 +123,7 @@ class Studioforty9_Recaptcha_Test_Helper_Request extends EcomDev_PHPUnit_Test_Ca
     public function test_verify_with_invalid_input_response()
     {
         // Create a mock request object and replace the one stored in the registry
-        Mage::app()->getRequest()->setPost(Studioforty9_Recaptcha_Helper_Request::REQUEST_RESPONSE_INDEX, 'test');
+        Mage::app()->getRequest()->setPost(Studioforty9_Recaptcha_Helper_Request::REQUEST_RESPONSE, 'test');
         $mockResponse = $this->getMockResponse('{"success":false,"error-codes": ["invalid-input-response"]}');
         $mockRequest  = $this->getMockRequest($mockResponse);
         

@@ -1,5 +1,24 @@
 <?php
+/**
+ * Studioforty9_Recaptcha
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Recaptcha
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE MIT
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/recaptcha
+ */
 
+/**
+ * Studioforty9_Recaptcha_Helper_Response
+ *
+ * @category   Studioforty9
+ * @package    Studioforty9_Recaptcha
+ * @subpackage Helper
+ * @author     StudioForty9 <info@studioforty9.com>
+ */
 class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
 {
     const MISSING_INPUT_SECRET   = 'missing-input-secret';
@@ -31,8 +50,8 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
      * The constructor allows for a shortcut method of setting the $success and
      * $errorCodes properties.
      *
-     * @param bool $success
-     * @param array $errorCodes
+     * @param bool  $success    A boolean flag to determine success
+     * @param array $errorCodes An array of error codes
      */
     public function __construct($success, $errorCodes = array())
     {
@@ -43,7 +62,8 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
     /**
      * Set the success flag.
      *
-     * @param bool $success
+     * @param bool $success A boolean flag to determine success
+     *
      * @return $this
      */
     public function setSuccess($success)
@@ -55,7 +75,8 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
     /**
      * Set the array of error codes from the response.
      *
-     * @param array $errorCodes
+     * @param array $errorCodes An array of error codes
+     *
      * @return $this
      */
     public function setErrorCodes($errorCodes)
@@ -112,7 +133,8 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
     /**
      * Get the error description.
      *
-     * @param string $errorCode
+     * @param string $errorCode The error code from Google reCAPTCHA
+     *
      * @return string
      */
     public function getErrorDescription($errorCode)

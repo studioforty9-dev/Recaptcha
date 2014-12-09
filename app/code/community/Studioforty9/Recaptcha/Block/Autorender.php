@@ -1,5 +1,23 @@
 <?php
+/**
+ * Studioforty9_Recaptcha
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Recaptcha
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE MIT
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/recaptcha
+ */
 
+/**
+ * Studioforty9_Recaptcha_Block_Autorender
+ *
+ * @category   Studioforty9
+ * @package    Studioforty9_Recaptcha
+ * @subpackage Block
+ */
 class Studioforty9_Recaptcha_Block_Autorender extends Mage_Core_Block_Template
 {
     /**

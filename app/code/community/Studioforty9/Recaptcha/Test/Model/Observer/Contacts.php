@@ -184,7 +184,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
         return $request;
     }
 
-    protected function getMockController($forFailure = true)
+    protected function getMockController()
     {
         // Mock Controller
         $controller = $this->getMockBuilder('Mage_Core_Controller_Front_Action')

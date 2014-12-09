@@ -1,9 +1,28 @@
 <?php
+/**
+ * Studioforty9_Recaptcha
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Recaptcha
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE MIT
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/recaptcha
+ */
 
+/**
+ * Studioforty9_Recaptcha_Helper_Request
+ *
+ * @category   Studioforty9
+ * @package    Studioforty9_Recaptcha
+ * @subpackage Helper
+ * @author     StudioForty9 <info@studioforty9.com>
+ */
 class Studioforty9_Recaptcha_Helper_Request extends Mage_Core_Helper_Abstract
 {
     const REQUEST_URL = 'https://www.google.com/recaptcha/api/siteverify';
-    const REQUEST_RESPONSE_INDEX = 'g-recaptcha-response';
+    const REQUEST_RESPONSE = 'g-recaptcha-response';
 
     /**
      * @var Varien_Http_Client $_client
@@ -47,7 +66,7 @@ class Studioforty9_Recaptcha_Helper_Request extends Mage_Core_Helper_Abstract
     {
         $params = array(
             'secret'   => $this->_getHelper()->getSecretKey(),
-            'response' => $this->_getRequest()->getPost(self::REQUEST_RESPONSE_INDEX),
+            'response' => $this->_getRequest()->getPost(self::REQUEST_RESPONSE),
             'remoteip' => $this->_getRequest()->getClientIp(true)
         );
         

@@ -40,8 +40,12 @@ class Studioforty9_Recaptcha_Test_Helper_Request extends EcomDev_PHPUnit_Test_Ca
      */
     protected function getMockRequest($response)
     {
-        $client = $this->getMockBuilder('Mock_Http_Client')->getMock();
-        $client->method('request')->will($this->returnValue($response));
+        $client = $this->getMockBuilder('Mock_Http_Client')
+            ->disableOriginalConstructor()
+            ->setMethods(array('request'))
+            ->getMock();
+
+        $client->expects($this->any())->method('request')->will($this->returnValue($response));
         
         return $client;
     }

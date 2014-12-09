@@ -1,5 +1,7 @@
 # ReCaptcha
 
+[![Build Status](https://travis-ci.org/StudioForty9/Recaptcha.svg?branch=master)](https://travis-ci.org/StudioForty9/Recaptcha)
+
 ## Installation
 
 ### Composer

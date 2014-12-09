@@ -9,7 +9,7 @@ class Studioforty9_Recaptcha_Block_Autorender extends Mage_Core_Block_Template
      */
     public function getRecaptchaScript()
     {
-        if (!Mage::helper('studioforty9_recaptcha')->isEnabled()) {
+        if (! Mage::helper('studioforty9_recaptcha')->isEnabled()) {
             return '';
         }
 
@@ -25,7 +25,7 @@ class Studioforty9_Recaptcha_Block_Autorender extends Mage_Core_Block_Template
     {
         $helper = Mage::helper('studioforty9_recaptcha');
 
-        if (!$helper->isEnabled()) {
+        if (! $helper->isEnabled()) {
             return '';
         }
 

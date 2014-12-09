@@ -8,7 +8,9 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     const MODULE_KEY_THEME = 'google/recaptcha/theme';
 
     /**
-     * Is the module enabled in configuration
+     * Is the module enabled in configuration.
+     *
+     * @codeCoverageIgnore
      * @return bool
      */
     public function isEnabled()
@@ -19,6 +21,7 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * The recaptcha site key.
      *
+     * @codeCoverageIgnore
      * @return string
      */
     public function getSiteKey()
@@ -29,6 +32,7 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * The recaptcha secret key.
      *
+     * @codeCoverageIgnore
      * @return string
      */
     public function getSecretKey()
@@ -39,6 +43,7 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * The recaptcha widget theme.
      *
+     * @codeCoverageIgnore
      * @return string
      */
     public function getTheme()

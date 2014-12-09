@@ -41,6 +41,11 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
         return $observer;
     }
 
+    /**
+     * Log the errors from Google reCAPTCHA to system.log
+     *
+     * @param Studioforty9_Recaptcha_Helper_Response $response
+     */
     protected function _logErrors(Studioforty9_Recaptcha_Helper_Response $response)
     {
         Mage::log(

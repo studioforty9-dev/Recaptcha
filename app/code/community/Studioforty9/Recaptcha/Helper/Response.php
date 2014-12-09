@@ -133,7 +133,7 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
     /**
      * Get the error description.
      *
-     * @param string $errorCode The error code from Google reCAPTCHA
+     * @param string $errorCode The human readable translation of the error code
      *
      * @return string
      */

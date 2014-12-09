@@ -32,7 +32,8 @@ class Studioforty9_Recaptcha_Helper_Request extends Mage_Core_Helper_Abstract
     /**
      * Set the client to make the request to recaptca.
      *
-     * @param Varien_Http_Client $client
+     * @param Varien_Http_Client $client The http client to use
+     *
      * @return $this
      */
     public function setHttpClient(Varien_Http_Client $client)

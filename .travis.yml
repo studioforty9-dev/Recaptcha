@@ -15,4 +15,4 @@ env:
   - MAGENTO_VERSION=magento-ce-1.8.0.0
   - MAGENTO_VERSION=magento-ce-1.7.0.2
 script:
-  - curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash
+  - curl -sSL https://gist.githubusercontent.com/StudioForty9/8a03200755c8b9e01cf4/raw/096ec8b58dbac57e31e093489a7a3c7d31bfb259/install.sh | bash

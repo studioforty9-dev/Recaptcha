@@ -46,7 +46,6 @@ class Studioforty9_Recaptcha_Test_Block_Autorender extends EcomDev_PHPUnit_Test_
             ->method('getSiteKey')
             ->will($this->returnValue($siteKey));
 
-
         $helper->expects($this->any())
             ->method('getSecretKey')
             ->will($this->returnValue($secretKey));

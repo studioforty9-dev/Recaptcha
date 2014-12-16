@@ -31,7 +31,7 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
      */
     public function onContactsPostPreDispatch(Varien_Event_Observer $observer)
     {
-        if (!Mage::helper('studioforty9_recaptcha')->isEnabled()) {
+        if (! Mage::helper('studioforty9_recaptcha')->isEnabled()) {
             return $observer;
         }
 

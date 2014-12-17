@@ -8,16 +8,19 @@
 
 Add the package to your require list:
 
-        "require": {
-            "studioforty9/recaptcha": "dev-master"
-        }
+```json
+"require": {
+    "studioforty9/recaptcha": "dev-master"
+}
+```
 
 Add the repository to your project composer.json file:
 
-        "repositories": [
-              {"type": "composer", "url": "http://packages.firegento.com"},
-              {"type": "vcs", "url": "http://github.com/studioforty9/recaptcha"}
-          ],
+```json
+"repositories": [
+    {"type": "composer", "url": "http://packages.firegento.com"}
+],
+```
 
 ## Configuration
 
@@ -26,7 +29,9 @@ Add the repository to your project composer.json file:
 3. Under 'Adding reCAPTCHA to your site' you should see 'Keys', specifically your 'Site Key' and 'Secret Key', copy and paste both keys into their respective configuration fields under 'System -> Configuration -> Sales -> Google API -> Google ReCaptcha'.
 4. Copy the /contacts/form.phtml template over to your theme, if you haven't already done so, just above the `buttons-set` div paste in the following code:
 
-        <?php echo $this->getChildHtml('studioforty9.recaptcha.autorender'); ?>
+```php
+<?php echo $this->getChildHtml('studioforty9.recaptcha.autorender'); ?>
+```
 
 ## Contributing
 

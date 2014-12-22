@@ -58,7 +58,7 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
     {
 
         $this->assertConfigNodeValue(
-            'adminhtml/acl/resources/admin/children/system/children/config/children/studioforty9_recaptcha/title',
+            'adminhtml/acl/resources/admin/children/system/children/config/children/google/children/studioforty9_recaptcha/title',
             'ReCaptcha Configuration Settings'
         );
     }

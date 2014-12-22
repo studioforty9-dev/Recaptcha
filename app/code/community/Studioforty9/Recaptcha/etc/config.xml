@@ -8,14 +8,14 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.0.0
+ * @version   1.0.1
  * @link      https://github.com/studioforty9/recaptcha
  */
 -->
 <config>
     <modules>
         <Studioforty9_Recaptcha>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </Studioforty9_Recaptcha>
     </modules>
     <global>
@@ -72,9 +72,13 @@
                             <children>
                                 <config>
                                     <children>
-                                        <studioforty9_recaptcha translate="title" module="studioforty9_recaptcha">
-                                            <title>ReCaptcha Configuration Settings</title>
-                                        </studioforty9_recaptcha>
+                                        <google>
+                                            <children>
+                                                <studioforty9_recaptcha translate="title" module="studioforty9_recaptcha">
+                                                    <title>ReCaptcha Configuration Settings</title>
+                                                </studioforty9_recaptcha>
+                                            </children>
+                                        </google>
                                     </children>
                                 </config>
                             </children>

@@ -7,7 +7,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.0.0
+ * @version   1.0.1
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -30,7 +30,7 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
 
     public function test_module_version_is_correct()
     {
-        $this->assertModuleVersion('1.0.0');
+        $this->assertModuleVersion('1.0.1');
     }
 
 

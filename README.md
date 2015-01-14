@@ -33,6 +33,17 @@ Add the repository to your project composer.json file:
 <?php echo $this->getChildHtml('studioforty9.recaptcha.autorender'); ?>
 ```
 
+### Using reCAPTCHA/Magento Contact Form on a CMS Page
+
+Open up the cms page in Magento and go to the Design Tab and paste the following under 'Layout Update XML':
+
+    <reference name="content">
+      <block type="core/template" name="contactForm" template="contacts/form.phtml">
+        <block type="studioforty9_recaptcha/autorender" name="studioforty9.recaptcha.autorender" template="studioforty9/recaptcha/autorender.phtml"/>
+      </block>
+    </reference>
+
+
 ## Contributing
 
 [see CONTRIBUTING file](https://github.com/studioforty9/recaptcha/blob/master/CONTRIBUTING.md)

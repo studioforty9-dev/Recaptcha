@@ -35,9 +35,6 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
             return $observer;
         }
 
-        /** @var Mage_Contacts_IndexController $controller */
-        $controller = $observer->getEvent()->getControllerAction();
-
         /** @var Studioforty9_Recaptcha_Helper_Request $request */
         $request = Mage::helper('studioforty9_recaptcha/request');
         /** @var Studioforty9_Recaptcha_Helper_Response $response */
@@ -54,6 +51,8 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
                 $this->_logErrors($response);
             }
 
+            /** @var Mage_Contacts_IndexController $controller */
+            $controller = $observer->getEvent()->getControllerAction();
             $redirectUrl = $controller->getRequest()->getBaseUrl() . '/contacts';
             $controller->getResponse()->setRedirect($redirectUrl)->sendResponse();
             $controller->getRequest()->setDispatched(true);
@@ -73,7 +72,6 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
      * Log the errors from Google reCAPTCHA to system.log
      *
      * @param Studioforty9_Recaptcha_Helper_Response $response The response helper
-     *
      * @return void
      */
     protected function _logErrors(Studioforty9_Recaptcha_Helper_Response $response)
@@ -86,3 +84,4 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
         );
     }
 }
+

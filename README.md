@@ -39,6 +39,7 @@ Open up the cms page in Magento and go to the Design Tab and paste the following
 
     <reference name="content">
       <block type="core/template" name="contactForm" template="contacts/form.phtml">
+        <action method="setFormAction"><value>/contacts/index/post</value></action>
         <block type="studioforty9_recaptcha/autorender" name="studioforty9.recaptcha.autorender" template="studioforty9/recaptcha/autorender.phtml"/>
       </block>
     </reference>

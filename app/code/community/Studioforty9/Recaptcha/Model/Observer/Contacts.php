@@ -39,6 +39,8 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
         $request = Mage::helper('studioforty9_recaptcha/request');
         /** @var Studioforty9_Recaptcha_Helper_Response $response */
         $response = $request->verify();
+        /** @var Mage_Contacts_IndexController $controller */
+        $controller = $observer->getEvent()->getControllerAction();
 
         if ($response->isFailure()) {
             Mage::getSingleton('core/session')->addError(
@@ -51,8 +53,6 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
                 $this->_logErrors($response);
             }
 
-            /** @var Mage_Contacts_IndexController $controller */
-            $controller = $observer->getEvent()->getControllerAction();
             $redirectUrl = $controller->getRequest()->getBaseUrl() . '/contacts';
             $controller->getResponse()->setRedirect($redirectUrl)->sendResponse();
             $controller->getRequest()->setDispatched(true);

@@ -4,7 +4,7 @@
   "type": "magento-module",
   "homepage": "https://github.com/studioforty9/recaptcha",
   "license": "BSD-3-Clause",
-  "keywords": ["captcha"],
+  "keywords": ["captcha", "recaptcha", "google recaptcha"],
   "authors": [
     {
       "name": "StudioForty9",
@@ -18,7 +18,7 @@
     }
   ],
   "require": {
-    "magento-hackathon/magento-composer-installer": "2.*"
+    "magento-hackathon/magento-composer-installer": "*"
   },
   "require-dev": {
     "ecomdev/ecomdev_phpunit": "*"

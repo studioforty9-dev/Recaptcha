@@ -53,7 +53,7 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
                 $this->_logErrors($response);
             }
 
-            $redirectUrl = $controller->getRequest()->getBaseUrl() . '/contacts';
+            $redirectUrl = Mage::getSingleton('core/session')->getLastUrl();
             $controller->getResponse()->setRedirect($redirectUrl)->sendResponse();
             $controller->getRequest()->setDispatched(true);
             $controller->setFlag(

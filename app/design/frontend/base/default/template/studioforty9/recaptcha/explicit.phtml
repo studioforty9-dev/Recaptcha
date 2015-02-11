@@ -21,13 +21,8 @@
                 'sitekey': "<?php echo $this->getSiteKey(); ?>",
                 'theme': "<?php echo $this->getTheme(); ?>",
                 'callback': function(response) {
-                    if (response.length === 420) {
-                        $('recaptcha-verification-1').writeAttribute('value', 'checked');
-                        $('recaptcha-verification-1').checked = true;
-                    } else {
-                        $('recaptcha-verification-1').writeAttribute('value', '');
-                        $('recaptcha-verification-1').checked = false;
-                    }
+                    $('recaptcha-verification-1').writeAttribute('value', 'checked');
+                    $('recaptcha-verification-1').checked = true;
                 }
             });
         };

@@ -100,7 +100,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
         // And return the response object
         $response->expects($this->once())
             ->method('setRedirect')
-            ->with($this->equalTo(Mage::getBaseUrl() . '/contacts'))
+            ->with($this->equalTo(Mage::getBaseUrl() . 'contacts'))
             ->will($this->returnSelf());
 
         // Expect sendResponse to be called once
@@ -122,7 +122,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
 
         // Expect getBaseUrl to be called once
         // And return the base url of the website
-        $request->expects($this->once())
+        $request->expects($this->any())
             ->method('getBaseUrl')
             ->will($this->returnValue(Mage::getBaseUrl()));
 
@@ -139,7 +139,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
         //  1. For getBaseUrl
         //  2. For setDispatched
         // And return the request object
-        $controller->expects($this->exactly(2))
+        $controller->expects($this->once())
             ->method('getRequest')
             ->will($this->returnValue($request));
 
@@ -258,8 +258,24 @@ class Studioforty9_Recaptcha_Test_Model_Observer_Contacts extends EcomDev_PHPUni
     {
         $session = $this->getModelMockBuilder($type)
             ->disableOriginalConstructor()
-            ->setMethods(null)
+            ->setMethods(array('getVisitorData', 'getLastUrl', 'hasVisitorData', 'hasLastUrl'))
             ->getMock();
+
+        $session->expects($this->any())
+            ->method('getVisitorData')
+            ->will($this->returnValue(array('request_uri' => Mage::getBaseUrl() . 'contacts')));
+
+        $session->expects($this->any())
+            ->method('getLastUrl')
+            ->will($this->returnValue(Mage::getBaseUrl() . 'contacts'));
+
+        $session->expects($this->any())
+            ->method('hasVisitorData')
+            ->will($this->returnValue(true));
+
+        $session->expects($this->any())
+            ->method('hasLastUrl')
+            ->will($this->returnValue(true));
 
         $this->replaceByMock('singleton', $type, $session);
 

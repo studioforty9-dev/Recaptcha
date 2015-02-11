@@ -53,7 +53,7 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
                 $this->_logErrors($response);
             }
 
-            $redirectUrl = Mage::getSingleton('core/session')->getLastUrl();
+            $redirectUrl = $this->_getRedirectUrl();
             $controller->getResponse()->setRedirect($redirectUrl)->sendResponse();
             $controller->getRequest()->setDispatched(true);
             $controller->setFlag(
@@ -83,5 +83,29 @@ class Studioforty9_Recaptcha_Model_Observer_Contacts
             )
         );
     }
-}
 
+    /**
+     * Get the redirect URL.
+     *
+     * @return string
+     */
+    protected function _getRedirectUrl()
+    {
+        $_session = Mage::getSingleton('core/session');
+
+        if (! $_session->hasVisitorData() && !$_session->hasLastUrl()) {
+            return Mage::getBaseUrl() . 'contacts';
+        }
+
+        if (! $_session->hasVisitorData() && $_session->hasLastUrl()) {
+            return $_session->getLastUrl();
+        }
+
+        $visitorData = $_session->getVisitorData();
+        if (! array_key_exists('request_uri', $visitorData) && $_session->hasLastUrl()) {
+            return $_session->getLastUrl();
+        }
+
+        return $visitorData['request_uri'];
+    }
+}

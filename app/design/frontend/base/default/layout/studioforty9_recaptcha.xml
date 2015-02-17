@@ -6,9 +6,9 @@
  * @category  Studioforty9
  * @package   Studioforty9_Recaptcha
  * @author    StudioForty9 <info@studioforty9.com>
- * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.0.1
+ * @version   1.1.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 -->
@@ -16,8 +16,26 @@
 
     <contacts_index_index>
         <reference name="contactForm">
-            <block type="studioforty9_recaptcha/autorender" name="studioforty9.recaptcha.autorender" template="studioforty9/recaptcha/autorender.phtml"/>
+            <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit" template="studioforty9/recaptcha/explicit.phtml"/>
         </reference>
     </contacts_index_index>
+
+    <review_product_list>
+        <reference name="product.review.form">
+            <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit" template="studioforty9/recaptcha/explicit.phtml"/>
+        </reference>
+    </review_product_list>
+
+    <customer_account_create>
+        <reference name="customer_form_register">
+            <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit" template="studioforty9/recaptcha/explicit.phtml"/>
+        </reference>
+    </customer_account_create>
+
+    <sendfriend_product_send>
+        <reference name="sendfriend.send">
+            <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit" template="studioforty9/recaptcha/explicit.phtml"/>
+        </reference>
+    </sendfriend_product_send>
 
 </layout>

@@ -12,6 +12,6 @@ If you are committing a pull request, please add tests for your changes before y
 
 ## RUNNING TESTS
 
-To run tests:
+To run tests (assuming you have the EcomDev PHPUnit extension installed and you have Magento setup):
 
 - In the root directory, run `phpunit`

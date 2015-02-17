@@ -5,9 +5,9 @@
  * @category  Studioforty9
  * @package   Studioforty9_Recaptcha
  * @author    StudioForty9 <info@studioforty9.com>
- * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.0.1
+ * @version   1.1.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -55,5 +55,21 @@ class Studioforty9_Recaptcha_Block_Autorender extends Mage_Core_Block_Template
         );
 
         return $html;
+    }
+
+    /**
+     * Determine if the module configuration settings allow displaying
+     * the widget in the current context.
+     *
+     * @param string $route
+     * @return bool
+     */
+    public function isAllowed($route)
+    {
+        if ($this->hasData('allow') && $this->getData('allow')) {
+            return true;
+        }
+
+        return Mage::helper('studioforty9_recaptcha')->isAllowed($route);
     }
 }

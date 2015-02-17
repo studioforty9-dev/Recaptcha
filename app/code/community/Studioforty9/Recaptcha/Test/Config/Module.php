@@ -5,9 +5,9 @@
  * @category  Studioforty9
  * @package   Studioforty9_Recaptcha
  * @author    StudioForty9 <info@studioforty9.com>
- * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.0.1
+ * @version   1.1.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -30,7 +30,7 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
 
     public function test_module_version_is_correct()
     {
-        $this->assertModuleVersion('1.0.1');
+        $this->assertModuleVersion('1.1.0');
     }
 
 
@@ -63,23 +63,45 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
         );
     }
 
-    public function test_config_has_event_observer_defined()
+    public function test_config_has_contact_event_observer_defined()
     {
         $this->assertEventObserverDefined(
             'frontend',
             'controller_action_predispatch_contacts_index_post',
-            'studioforty9_recaptcha/observer_contacts',
-            'onContactsPostPreDispatch'
+            'studioforty9_recaptcha/observer',
+            'onPostPreDispatch'
         );
     }
 
-    /*public function test_config_defaults()
+    public function test_config_has_review_event_observer_defined()
     {
-        $this->assertDefaultConfigValue('google/recaptcha/enabled', '0');
-        $this->assertDefaultConfigValue('google/recaptcha/site_key', '');
-        $this->assertDefaultConfigValue('google/recaptcha/secret_key', '');
-        $this->assertDefaultConfigValue('google/recaptcha/theme', 'light');
-    }*/
+        $this->assertEventObserverDefined(
+            'frontend',
+            'controller_action_predispatch_review_product_post',
+            'studioforty9_recaptcha/observer',
+            'onPostPreDispatch'
+        );
+    }
+
+    public function test_config_has_sendfriend_event_observer_defined()
+    {
+        $this->assertEventObserverDefined(
+            'frontend',
+            'controller_action_predispatch_sendfriend_product_sendmail',
+            'studioforty9_recaptcha/observer',
+            'onPostPreDispatch'
+        );
+    }
+
+    public function test_config_has_customer_registration_event_observer_defined()
+    {
+        $this->assertEventObserverDefined(
+            'frontend',
+            'controller_action_predispatch_customer_account_createpost',
+            'studioforty9_recaptcha/observer',
+            'onPostPreDispatch'
+        );
+    }
 
     public function test_layout_updates_are_correct()
     {

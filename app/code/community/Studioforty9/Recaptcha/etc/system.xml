@@ -6,9 +6,9 @@
 * @category  Studioforty9
 * @package   Studioforty9_Recaptcha
 * @author    StudioForty9 <info@studioforty9.com>
-* @copyright 2014 StudioForty9 (http://www.studioforty9.com)
+* @copyright 2015 StudioForty9 (http://www.studioforty9.com)
 * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
-* @version   1.0.1
+* @version   1.1.0
 * @link      https://github.com/studioforty9/recaptcha
 */
 -->
@@ -33,6 +33,42 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </enabled>
+                        <enabled_contacts translate="label">
+                            <label>Enabled on Contact Form</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled_contacts>
+                        <enabled_reviews translate="label">
+                            <label>Enabled on Product Review Form</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled_reviews>
+                        <enabled_sendfriend translate="label">
+                            <label>Enabled on Product Send to Friend Form</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled_sendfriend>
+                        <enabled_customer_registration translate="label">
+                            <label>Enabled on Customer Registration Form</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled_customer_registration>
                         <site_key translate="label">
                             <label>Site Key</label>
                             <frontend_type>text</frontend_type>

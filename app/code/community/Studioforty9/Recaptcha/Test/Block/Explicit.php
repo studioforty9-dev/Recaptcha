@@ -12,21 +12,21 @@
  */
 
 /**
- * Studioforty9_Recaptcha_Test_Block_Autorender
+ * Studioforty9_Recaptcha_Test_Block_Explicit
  *
  * @category   Studioforty9
  * @package    Studioforty9_Recaptcha
  * @subpackage Test
  * @author     StudioForty9 <info@studioforty9.com>
  */
-class Studioforty9_Recaptcha_Test_Block_Autorender extends EcomDev_PHPUnit_Test_Case
+class Studioforty9_Recaptcha_Test_Block_Explicit extends EcomDev_PHPUnit_Test_Case
 {
-    /** @var Studioforty9_Recaptcha_Block_Autorender */
+    /** @var Studioforty9_Recaptcha_Block_Explicit */
     protected $block;
 
     public function setUp()
     {
-        $this->block = new Studioforty9_Recaptcha_Block_Autorender();
+        $this->block = new Studioforty9_Recaptcha_Block_Explicit();
 
         parent::setUp();
     }
@@ -73,42 +73,8 @@ class Studioforty9_Recaptcha_Test_Block_Autorender extends EcomDev_PHPUnit_Test_
         $dataHelper = $this->getMockDataHelper(true);
         $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
 
-        $expected = '<script src="https://www.google.com/recaptcha/api.js"></script>';
+        $expected = '<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>';
         $actual = $this->block->getRecaptchaScript();
-        $this->assertEquals($expected, $actual);
-    }
-
-    public function test_getRecaptchaHtml_returns_empty_string_when_module_disabled()
-    {
-        $dataHelper = $this->getMockDataHelper(false);
-        $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
-
-        $expected = '';
-        $actual   = $this->block->getRecaptchaHtml();
-        $this->assertEquals($expected, $actual);
-    }
-
-    public function test_getRecaptchaHtml_returns_expected_html_when_module_enabled_using_light_theme()
-    {
-        $dataHelper = $this->getMockDataHelper(true, 'light');
-        $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
-
-        $theme    = 'light';
-        $siteKey  = '123456789';
-        $expected = sprintf('<div class="g-recaptcha" data-theme="%s" data-sitekey="%s"></div>', $theme, $siteKey);
-        $actual   = $this->block->getRecaptchaHtml();
-        $this->assertEquals($expected, $actual);
-    }
-
-    public function test_getRecaptchaHtml_returns_expected_html_when_module_enabled_using_dark_theme()
-    {
-        $dataHelper = $this->getMockDataHelper(true, 'dark');
-        $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
-
-        $theme    = 'dark';
-        $siteKey  = '123456789';
-        $expected = sprintf('<div class="g-recaptcha" data-theme="%s" data-sitekey="%s"></div>', $theme, $siteKey);
-        $actual   = $this->block->getRecaptchaHtml();
         $this->assertEquals($expected, $actual);
     }
 }

@@ -6,16 +6,16 @@
  * @category  Studioforty9
  * @package   Studioforty9_Recaptcha
  * @author    StudioForty9 <info@studioforty9.com>
- * @copyright 2014 StudioForty9 (http://www.studioforty9.com)
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.0.1
+ * @version   1.1.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 -->
 <config>
     <modules>
         <Studioforty9_Recaptcha>
-            <version>1.0.1</version>
+            <version>1.1.0</version>
         </Studioforty9_Recaptcha>
     </modules>
     <global>
@@ -56,11 +56,35 @@
             <controller_action_predispatch_contacts_index_post>
                 <observers>
                     <studioforty9_recaptcha>
-                        <class>studioforty9_recaptcha/observer_contacts</class>
-                        <method>onContactsPostPreDispatch</method>
+                        <class>studioforty9_recaptcha/observer</class>
+                        <method>onPostPreDispatch</method>
                     </studioforty9_recaptcha>
                 </observers>
             </controller_action_predispatch_contacts_index_post>
+            <controller_action_predispatch_review_product_post>
+                <observers>
+                    <studioforty9_recaptcha>
+                        <class>studioforty9_recaptcha/observer</class>
+                        <method>onPostPreDispatch</method>
+                    </studioforty9_recaptcha>
+                </observers>
+            </controller_action_predispatch_review_product_post>
+            <controller_action_predispatch_customer_account_createpost>
+                <observers>
+                    <studioforty9_recaptcha>
+                        <class>studioforty9_recaptcha/observer</class>
+                        <method>onPostPreDispatch</method>
+                    </studioforty9_recaptcha>
+                </observers>
+            </controller_action_predispatch_customer_account_createpost>
+            <controller_action_predispatch_sendfriend_product_sendmail>
+                <observers>
+                    <studioforty9_recaptcha>
+                        <class>studioforty9_recaptcha/observer</class>
+                        <method>onPostPreDispatch</method>
+                    </studioforty9_recaptcha>
+                </observers>
+            </controller_action_predispatch_sendfriend_product_sendmail>
         </events>
     </frontend>
     <adminhtml>
@@ -92,6 +116,10 @@
         <google>
             <recaptcha>
                 <enabled>0</enabled>
+                <enabled_contacts>0</enabled_contacts>
+                <enabled_reviews>0</enabled_reviews>
+                <enabled_sendfriend>0</enabled_sendfriend>
+                <enabled_customer_registration>0</enabled_customer_registration>
                 <site_key></site_key>
                 <secret_key></secret_key>
                 <theme>light</theme>

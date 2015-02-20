@@ -65,7 +65,7 @@ You can check out the file under `/app/design/frontend/base/default/template/stu
 
 ### Using reCAPTCHA on the Account Registration Page
 
-Again under `/app/design/frontend/base/default/template/studioforty9/recaptcha/samples/` - take a look at `base/persistent/form/register.phtml`. The template is an exact copy of the base customer registration form template with our extension code already installed in the correct place. Just drop the file into your custom theme. It uses the `explicit` block which gives you javascript validation on the recaptcha widget by default.
+Again under `/app/design/frontend/base/default/template/studioforty9/recaptcha/samples/` - take a look at `/base/persistent/customer/form/register.phtml`. The template is an exact copy of the base customer registration form template with our extension code already installed in the correct place. Just drop the file into your custom theme. It uses the `explicit` block which gives you javascript validation on the recaptcha widget by default.
 
 ### Using reCAPTCHA on the Send to Friend Page
 

@@ -4,7 +4,7 @@
 
 ## Features
 
-Add the Google ReCaptcha widget to front-end forms in Magento, we currently support the following forms:
+The reCAPTCHA extension uses Google's reCAPTCHA widget [(read more)](https://www.google.com/recaptcha/intro/index.html) to lower the friction when identifying real people and provide powerful protection against spam with front-end forms in Magento, we currently support the following forms:
 
 - Contact page form
 - Product Review form
@@ -82,6 +82,42 @@ Open up the cms page in Magento and go to the Design Tab and paste the following
       </block>
     </reference>
 
+## Developers
+
+If you want to integrate your own module and add the reCAPTCHA widget to a form, simply add the observer to your own modules config.xml:
+
+    ```xml
+    <config>
+        <frontend>
+            <events>
+                <controller_action_predispatch_yourcontroller_action_method>
+                    <observers>
+                        <studioforty9_recaptcha>
+                            <class>studioforty9_recaptcha/observer</class>
+                            <method>onPostPreDispatch</method>
+                        </studioforty9_recaptcha>
+                    </observers>
+                </controller_action_predispatch_yourcontroller_action_method>
+            </events>
+        </frontend>
+    </config>
+    ```
+    
+Next, include the block in your layout XML:
+
+    ```xml
+    <your_layout_handle>
+        <reference name="your.form.template">
+            <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit" template="studioforty9/recaptcha/explicit.phtml"/>
+        </reference>
+    </your_layout_handle>
+    ```
+
+Finally, add the block to your form template code:
+
+    ```php
+    <?php echo $this->getChildHtml('studioforty9.recaptcha.explicit'); ?>
+    ```
 
 ## Contributing
 

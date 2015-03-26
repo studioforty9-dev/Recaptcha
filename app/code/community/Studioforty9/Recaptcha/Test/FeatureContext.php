@@ -9,13 +9,8 @@
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
  * @version   1.2.0
  * @link      https://github.com/studioforty9/recaptcha
- * @see       Studioforty9_Recaptcha_Block_Autorender
  */
-?>
-<?php if ($this->isAllowed($this->getRequest()->getRouteName())): ?>
-<div class="recaptcha">
-    <?php echo $this->getRecaptchaHtml(); ?>
-    <?php echo $this->getRecaptchaScript(); ?>
+/*class Studioforty9_Recaptcha_Test_FeatureContext extends \Behat\MinkExtension\Context\RawMinkContext
+{
 
-</div>
-<?php endif; ?>
+}*/

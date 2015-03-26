@@ -7,7 +7,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.1.0
+ * @version   1.2.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -166,6 +166,10 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isAllowed($route)
     {
+        if (! Mage::getConfig()->getModuleConfig("Studioforty9_Recaptcha")->is('active', 'true')) {
+            return false;
+        }
+        
         $acl = array(
             'contacts'   => $this->isContactsEnabled(),
             'review'     => $this->isReviewsEnabled(),

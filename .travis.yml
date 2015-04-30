@@ -15,4 +15,4 @@ env:
   - MAGENTO_VERSION=magento-ce-1.8.0.0
   - MAGENTO_VERSION=magento-ce-1.7.0.2
 script:
-  - curl -sSL https://gist.githubusercontent.com/StudioForty9/8a03200755c8b9e01cf4/raw/b96aef10a09e3139dd650000c50371e6bd4018fc/recaptcha-install.sh | bash
+  - curl -sSL https://gist.githubusercontent.com/StudioForty9/8a03200755c8b9e01cf4/raw/9aefc312accf5d6fa3643e25a6b1b16825a5c882/recaptcha-install.sh | bash

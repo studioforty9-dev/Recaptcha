@@ -19,8 +19,5 @@
   ],
   "require": {
     "magento-hackathon/magento-composer-installer": "*"
-  },
-  "require-dev": {
-    "ecomdev/ecomdev_phpunit": "*"
   }
 }

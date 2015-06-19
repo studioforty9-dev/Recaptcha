@@ -145,7 +145,7 @@ You can fix this by replacing it with the following XML.
 <review_product_list>
   <reference name="product.info.product_additional_data">
     <remove name="product.review.form"/>
-    <block type="ebizmarts_autoresponder/review_form" name="product.review.form.autoresponder" as="review_form”>
+    <block type="ebizmarts_autoresponder/review_form" name="product.review.form.autoresponder" as="review_form">
       <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit" template="studioforty9/recaptcha/explicit.phtml"/>
     </block>
     <block type="page/html_wrapper" name="product.review.form.fields.before" as="form_fields_before" translate="label"/>

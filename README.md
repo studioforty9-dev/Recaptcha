@@ -181,6 +181,20 @@ Since we are no longer on the default review page, we have to add some code to L
 </catalog_product_view>
 ```
 
+## Hardcoding the widget in your template
+
+If you just cannot get the layout XML to work for you, you can hardcode the block directly into the template for the form you wish to use.
+
+For example, under `<ul class="form-list">` on the rwd theme review form template (located at: /app/design/frontend/rwd/review/form.phtml) you can just add another item to the list like so:
+```php
+<li>
+    <?php $recaptcha = $this->getLayout()->createBlock('studioforty9_recaptcha/explicit')->setTemplate('studioforty9/recaptcha/explicit.phtml'); ?>
+    <?php $this->setChild('studioforty9.recaptcha.explicit', $recaptcha->setAllow(true)); ?>
+    <?php echo $this->getChildHtml('studioforty9.recaptcha.explicit'); ?>
+</li>
+```
+Note: always create your own version of the template in your custom theme, never hack the core file.
+
 ## Developers
 
 If you want to integrate your own extension and add the reCAPTCHA widget to a form, simply add the observer to your own extension config.xml:

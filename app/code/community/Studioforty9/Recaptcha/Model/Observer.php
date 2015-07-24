@@ -50,7 +50,7 @@ class Studioforty9_Recaptcha_Model_Observer
      *  - controller_action_predispatch_review_product_post
      *
      * @param Varien_Event_Observer $observer The observer from the controller
-     * @return Varien_Event_Observer
+     * @return Varien_Event_Observer|Mage_Core_Controller_Front_Action
      */
     public function onPostPreDispatch(Varien_Event_Observer $observer)
     {

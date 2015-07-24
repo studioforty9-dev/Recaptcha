@@ -88,9 +88,15 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
             }
         }
 
+        $query = array(
+            'onload' => 'onloadCallback',
+            'render' => 'explicit',
+            'hl'     => $lang
+        );
+
         return sprintf(
-            '<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=%s" async defer></script>',
-            $lang
+            '<script src="https://www.google.com/recaptcha/api.js?%s" async defer></script>',
+            http_build_query($query)
         );
     }
 

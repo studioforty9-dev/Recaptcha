@@ -148,14 +148,22 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
 
     /**
      * Log the error to file.
+     * 
+     * @return bool
      */
     public function log()
     {
+        if (Mage::getStoreConfigFlag('dev/log/active')) {
+            return false;
+        }
+        
         Mage::log(
             sprintf(
                 'reCAPTCHA Errors: %1$s',
                 implode(', ', $this->getErrors())
             )
         );
+        
+        return true;
     }
 }

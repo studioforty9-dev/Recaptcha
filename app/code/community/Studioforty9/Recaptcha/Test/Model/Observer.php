@@ -103,8 +103,8 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
 
     public function test_onPostPreDispatch_returns_observer_on_verify_success_when_module_enabled()
     {
-        //$this->markTestSkipped();
-        //*
+        $this->markTestSkipped();
+        /*
         // Expect studioforty9_recaptcha::isEnabled to be called once
         $dataHelper = $this->getMockDataHelper();
         $dataHelper->expects($this->exactly(2))->method('isEnabled')->will($this->returnValue(true));
@@ -144,9 +144,9 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
 
     public function test_onPostPreDispatch_returns_controller_on_verify_failed_with_module_enabled()
     {
-        //$this->markTestSkipped();
+        $this->markTestSkipped();
 
-        // Mock the data helper
+        /* Mock the data helper
         $dataHelper = $this->getMockDataHelper();
         // Expect isEnabled to called once and return true
         $dataHelper->expects($this->exactly(2))->method('isEnabled')->will($this->returnValue(true));

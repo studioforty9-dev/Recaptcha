@@ -77,7 +77,8 @@ class Studioforty9_Recaptcha_Helper_Request extends Mage_Core_Helper_Abstract
 
         try {
             $response = $client->request('GET');
-            $data = Mage::helper('core')->jsonDecode($response->getBody());
+            $body = $response->decodeGzip($response->getRawBody());
+            $data = Mage::helper('core')->jsonDecode($body);
             if (array_key_exists('error-codes', $data)) {
                 $errors = $data['error-codes'];
             }

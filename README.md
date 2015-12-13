@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/StudioForty9/Recaptcha.svg?branch=master)](https://travis-ci.org/StudioForty9/Recaptcha)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/StudioForty9/Recaptcha/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/StudioForty9/Recaptcha/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/StudioForty9/Recaptcha/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/StudioForty9/Recaptcha/?branch=master)
-[![TripleCheck Grade](http://triplecheck.io/badge/grade/241)](http://triplecheck.io/details/241)
+[![Downloads](https://img.shields.io/github/downloads/atom/atom/total.svg)
 
 ## Features
 

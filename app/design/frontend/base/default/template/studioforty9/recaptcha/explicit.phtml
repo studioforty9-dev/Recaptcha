@@ -14,8 +14,8 @@
 
 $id = $this->getRecaptchaId();
 ?>
-<div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:20px;">
-    <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="hide " style="visibility:hidden; position:absolute; left:-1000000px" />
+<div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
+    <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="hide required-entry" style="visibility:hidden; position:absolute; left:-1000000px" />
     <div id="el-<?php echo $id ?>"></div>
     <script type="text/javascript">
         var onloadCallback = function() {

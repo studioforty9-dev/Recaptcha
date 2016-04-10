@@ -34,6 +34,14 @@
                 <class>Studioforty9_Recaptcha_Model</class>
             </studioforty9_recaptcha>
         </models>
+        <resources>
+            <studioforty9_recaptcha_setup>
+                 <setup>
+                      <module>Studioforty9_Recaptcha</module>
+                      <class>Mage_Core_Model_Resource_Setup</class>
+                 </setup>
+            </studioforty9_recaptcha_setup>
+        </resources>
     </global>
     <frontend>
         <layout>

@@ -37,6 +37,7 @@ class Studioforty9_Recaptcha_Model_Routes implements Countable
             'value' => $route,
             'label' => $label,
         );
+        
         return $this;
     }
     
@@ -80,6 +81,7 @@ class Studioforty9_Recaptcha_Model_Routes implements Countable
     public function clear()
     {
         $this->routes = array();
+        
         return $this;
     }
     

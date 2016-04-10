@@ -40,7 +40,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-							<comment><![CDATA[<a href="https://www.google.com/recaptcha/admin" target="_blank">Create a site key</a>]]></comment>
+                            <comment><![CDATA[<a href="https://www.google.com/recaptcha/admin" target="_blank">Create a site key</a>]]></comment>
                             <depends><enabled>1</enabled></depends>
                         </site_key>
                         <secret_key translate="label">
@@ -50,7 +50,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-							<comment><![CDATA[<a href="https://www.google.com/recaptcha/admin" target="_blank">Create a secret key</a>]]></comment>
+                            <comment><![CDATA[<a href="https://www.google.com/recaptcha/admin" target="_blank">Create a secret key</a>]]></comment>
                             <depends><enabled>1</enabled></depends>
                         </secret_key>
                         <theme translate="label">
@@ -61,7 +61,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-							<comment><![CDATA[See the Google reCAPTCHA Documentation <a href="https://developers.google.com/recaptcha/docs/display#render_param" target="_blank">for more</a>]]></comment>
+                            <comment><![CDATA[See the Google reCAPTCHA Documentation <a href="https://developers.google.com/recaptcha/docs/display#render_param" target="_blank">for more</a>]]></comment>
                             <depends><enabled>1</enabled></depends>
                         </theme>
                         <enabled_routes translate="label hint">
@@ -72,7 +72,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-							<comment><![CDATA[Hold Ctrl/Command and click to select<br/>Hold Shift and click to select a range<br/>Routes to allow reCAPTCHA verification - <a href="https://recaptcha.readme.io/v1.5/docs/troubleshooting#understanding-configuration-routes" target="_blank">read docs</a>]]></comment>
+                            <comment><![CDATA[Hold Ctrl/Command and click to select<br/>Hold Shift and click to select a range<br/>Routes to allow reCAPTCHA verification - <a href="https://recaptcha.readme.io/v1.5/docs/troubleshooting#understanding-configuration-routes" target="_blank">read docs</a>]]></comment>
                             <depends><enabled>1</enabled></depends>
                         </enabled_routes>
                     </fields>

@@ -33,7 +33,7 @@ class Studioforty9_Recaptcha_Model_Observer
 
         /** @var Mage_Core_Controller_Front_Action $controller */
         $controller = $observer->getEvent()->getControllerAction();
-		if (! $controller->getRequest()->isPost()) return;
+        if (! $controller->getRequest()->isPost()) return;
         
         $route = $controller->getFullActionName();
         if (! Mage::helper('studioforty9_recaptcha')->isAllowed($route)) return;
@@ -65,7 +65,7 @@ class Studioforty9_Recaptcha_Model_Observer
         Mage::dispatchEvent('studioforty9_recaptcha_failed', $payload);
         Mage::dispatchEvent('studioforty9_recaptcha_failed_' . $route, $payload);
 				
-		return $controller;
+        return $controller;
     }
     
     /**

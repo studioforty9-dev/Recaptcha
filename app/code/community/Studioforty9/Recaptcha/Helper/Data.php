@@ -29,7 +29,7 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     const MODULE_KEY_SITE = 'google/recaptcha/site_key';
     const MODULE_KEY_SECRET = 'google/recaptcha/secret_key';
     const MODULE_KEY_THEME = 'google/recaptcha/theme';
-	const MODULE_KEY_ROUTES = 'google/recaptcha/enabled_routes';
+    const MODULE_KEY_ROUTES = 'google/recaptcha/enabled_routes';
     /**#@-*/
 
     /**
@@ -78,8 +78,8 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
 
     /**
      * The enabled routes.
-	 *
-	 * @codeCoverageIgnore
+     *
+     * @codeCoverageIgnore
      * @return string
      */
     public function getEnabledRoutes()
@@ -98,9 +98,9 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isAllowed($route)
     {
-		if (! $this->isModuleActive() || ! $this->isEnabled()) {
-			return false;
-		}
+        if (! $this->isModuleActive() || ! $this->isEnabled()) {
+            return false;
+        }
 
         return in_array(strtolower($route), $this->getEnabledRoutes());
     }
@@ -111,10 +111,10 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
      * @codeCoverageIgnore
      * @return bool
      */
-	public function isModuleActive()
-	{
-  	    return Mage::getConfig()
-		    ->getModuleConfig("Studioforty9_Recaptcha")
+    public function isModuleActive()
+    {
+        return Mage::getConfig()
+            ->getModuleConfig("Studioforty9_Recaptcha")
             ->is('active', 'true');
-	}
+    }
 }

@@ -69,6 +69,7 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
     public function setSuccess($success)
     {
         $this->_success = $success;
+        
         return $this;
     }
 
@@ -82,6 +83,7 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
     public function setErrorCodes($errorCodes)
     {
         $this->_errorCodes = $errorCodes;
+        
         return $this;
     }
 

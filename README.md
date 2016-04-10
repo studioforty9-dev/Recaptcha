@@ -13,6 +13,8 @@ The reCAPTCHA extension uses Google's reCAPTCHA widget [(read more)](https://www
 - Product Review form
 - Customer Registration form
 - Product Send to friend form
+- Login Form
+- Forgot Password Form
 
 ## Composer Installation
 
@@ -35,6 +37,10 @@ Add the repository to your project composer.json file:
 ## Documentation
 
 Documentation can be found at http://recaptcha.readme.io/docs/
+
+## Extending/Using with your own forms
+
+Please refer to the developer documentation at https://recaptcha.readme.io/v1.5/docs/developers
 
 ## Contributing
 

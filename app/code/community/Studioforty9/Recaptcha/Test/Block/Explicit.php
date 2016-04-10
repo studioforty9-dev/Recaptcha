@@ -7,7 +7,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.2.0
+ * @version   1.5.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -36,7 +36,7 @@ class Studioforty9_Recaptcha_Test_Block_Explicit extends EcomDev_PHPUnit_Test_Ca
         $helper = $this->getHelperMock('studioforty9_recaptcha', array(
             'isEnabled', 'getSiteKey', 'getSecretKey', 'getTheme'
         ), false, array(), null, false);
-
+        
         $helper->expects($this->any())
             ->method('isEnabled')
             ->will($this->returnValue($enabled));
@@ -69,12 +69,10 @@ class Studioforty9_Recaptcha_Test_Block_Explicit extends EcomDev_PHPUnit_Test_Ca
     }
 
     public function test_getRecaptchaScript_returns_script_tag_html_when_module_enabled()
-    {
+    {   
         $dataHelper = $this->getMockDataHelper(true);
         $locale = 'de_DE';
-        $lang = 'de';
-
-        Mage::app()->getLocale()->setLocaleCode($locale);
+        $lang = 'de';Mage::app()->getLocale()->setLocaleCode($locale);
         Mage::getSingleton('core/translate')->setLocale($locale)->init('frontend', true);
         $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
 

@@ -7,7 +7,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.2.0
+ * @version   1.5.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -29,7 +29,11 @@ class Studioforty9_Recaptcha_Test_Model_Source_Theme extends EcomDev_PHPUnit_Tes
         $this->model = new Studioforty9_Recaptcha_Model_Source_Theme();
     }
 
-    public function test_toOptionArray_returns_expected_array()
+    /**
+     * @test
+     * @group source
+     */
+    public function it_returns_expected_array_items()
     {
         $options = $this->model->toOptionArray();
 

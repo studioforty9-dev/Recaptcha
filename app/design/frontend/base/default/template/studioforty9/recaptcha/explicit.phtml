@@ -7,24 +7,25 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.2.0
+ * @version   1.5.0
  * @link      https://github.com/studioforty9/recaptcha
  * @see       Studioforty9_Recaptcha_Block_Explicit
  */
+
+$id = $this->getRecaptchaId();
 ?>
-<?php if ($this->isAllowed($this->getRequest()->getRouteName())): ?>
-<div class="recaptcha" style="overflow:hidden;position:relative;">
-    <input type="checkbox" id="recaptcha-verification-1" name="recaptcha-verification-1" value="" class="hide required-entry" style="visibility:hidden;position:absolute;left:-1000000px" />
-    <div id="recaptcha-1"></div>
+<div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:20px;">
+    <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="hide " style="visibility:hidden; position:absolute; left:-1000000px" />
+    <div id="el-<?php echo $id ?>"></div>
     <script type="text/javascript">
         var onloadCallback = function() {
-            grecaptcha.render('recaptcha-1', {
+            grecaptcha.render('el-<?php echo $id ?>', {
                 'sitekey': "<?php echo $this->getSiteKey(); ?>",
                 'theme': "<?php echo $this->getTheme(); ?>",
                 'callback': function(response) {
                     if (response.length > 0) {
-                        $('recaptcha-verification-1').writeAttribute('value', 'checked');
-                        $('recaptcha-verification-1').checked = true;
+                        $('cb-<?php echo $id ?>').writeAttribute('value', 'checked');
+                        $('cb-<?php echo $id ?>').checked = true;
                     }
                 }
             });
@@ -32,4 +33,3 @@
     </script>
     <?php echo $this->getRecaptchaScript(); ?>
 </div>
-<?php endif; ?>

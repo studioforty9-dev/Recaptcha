@@ -7,7 +7,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.2.0
+ * @version   1.5.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -34,81 +34,116 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
     }
 
     /**
-     * The module can be turned off via configuration, by setting
-     * 'Enabled' to 'No'. We should ensure that:
-     *      1. the verify method is not called
-     *      2. the observer which was passed is returned
+     * The module can be turned off via configuration, by setting 'Enabled' to 'No'.
+     * We should ensure that the verify method is not called.
      *
      * @test
      */
     public function it_doesnt_execute_verify_when_the_module_is_disabled()
     {
-        $this->markTestSkipped();
-
-        // helper->isEnabled() called once
-        // observer->getEvent() called once
-        // event->getControllerAction() called once
-        // controller->getRequest() called once
-        // request->getRouteName() called once
-        // helper->isAllowed() called once
-        // requestHelper->verify() should not be called
-        // should return observer
-    }
-
-    /**
-     * @test
-     */
-    public function it_doesnt_execute_verify_when_the_contact_form_recaptcha_is_disabled()
-    {
-        $this->markTestSkipped();
-    }
-
-    /**
-     * @test
-     */
-    public function it_doesnt_execute_verify_when_the_product_review_form_recaptcha_is_disabled()
-    {
-        $this->markTestSkipped();
-    }
-
-    /**
-     * @test
-     */
-    public function it_doesnt_execute_verify_when_the_send_to_friend_form_recaptcha_is_disabled()
-    {
-        $this->markTestSkipped();
-    }
-
-    /**
-     * @test
-     */
-    public function it_doesnt_execute_verify_when_the_customer_registration_form_recaptcha_is_disabled()
-    {
-        $this->markTestSkipped();
-    }
-
-    public function test_onPostPreDispatch_returns_observer_when_module_disabled()
-    {
-        $this->markTestSkipped();
-        /*
+        // Mock the data helper
         $dataHelper = $this->getMockDataHelper();
         $dataHelper->expects($this->once())->method('isEnabled')->will($this->returnValue(false));
         $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
-
+        // Mock the observer object
         $observer = $this->getMockObserver();
+        
         $result = $this->observer->onPostPreDispatch($observer);
 
-        $this->assertInstanceOf('Varien_Event_Observer', $result);*/
+        $this->assertNull($result);
+    }
+    
+    /**
+     * @test
+     * @group onPostPreDispatch
+     */
+    public function onPostPreDispatch_returns_null_when_request_method_is_not_post()
+    {
+        // Mock the data helper
+        $dataHelper = $this->getMockDataHelper();
+        $dataHelper->expects($this->once())->method('isEnabled')->will($this->returnValue(true));
+        $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
+        
+        // Mock the request object
+        $request = $this->getMockRequest();
+        $request->expects($this->once())->method('isPost')->will($this->returnValue(false));
+        
+        // Mock the controller object
+        $controller = $this->getMockController();
+        $controller->expects($this->once())
+            ->method('getRequest')
+            ->will($this->returnValue($request));
+
+        // Mock the event object, expects getControllerAction to be called once and return $controller
+        $event = $this->getMockEvent($controller);
+        
+        // Mock the observer object
+        $observer = $this->getMockObserver();
+        
+        // Expect getEvent to be called once and return the event object
+        $observer->expects($this->once())->method('getEvent')->will($this->returnValue($event));
+        
+        // Call the observer method
+        $result = $this->observer->onPostPreDispatch($observer);
+
+        $this->assertNull($result);
+    }
+    
+    /**
+     * @test
+     * @group onPostPreDispatch
+     */
+    public function onPostPreDispatch_returns_null_when_route_is_not_allowed()
+    {
+        // Mock the data helper
+        $dataHelper = $this->getMockDataHelper();
+        $dataHelper->expects($this->once())->method('isEnabled')->will($this->returnValue(true));
+        $dataHelper->expects($this->once())->method('isAllowed')
+            ->with($this->equalTo('route_controller_action'))
+            ->will($this->returnValue(false));
+        $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
+        
+        // Mock the request object
+        $request = $this->getMockRequest();
+        $request->expects($this->once())->method('isPost')->will($this->returnValue(true));
+        
+        // Mock the controller object
+        $controller = $this->getMockController();
+        $controller->expects($this->once())
+            ->method('getRequest')
+            ->will($this->returnValue($request));
+        
+        $controller->expects($this->once())
+            ->method('getFullActionName')
+            ->will($this->returnValue('route_controller_action'));
+
+        // Mock the event object, expects getControllerAction to be called once and return $controller
+        $event = $this->getMockEvent($controller);
+        
+        // Mock the observer object
+        $observer = $this->getMockObserver();
+        
+        // Expect getEvent to be called once and return the event object
+        $observer->expects($this->once())->method('getEvent')->will($this->returnValue($event));
+        
+        // Call the observer method
+        $result = $this->observer->onPostPreDispatch($observer);
+
+        $this->assertNull($result);
     }
 
-    public function test_onPostPreDispatch_returns_observer_on_verify_success_when_module_enabled()
+    /**
+     * @test
+     * @group onPostPreDispatch
+     */
+    public function onPostPreDispatch_returns_observer_on_verify_success_when_module_enabled()
     {
-        $this->markTestSkipped();
-        /*
-        // Expect studioforty9_recaptcha::isEnabled to be called once
+        // Mock the data helper
         $dataHelper = $this->getMockDataHelper();
-        $dataHelper->expects($this->exactly(2))->method('isEnabled')->will($this->returnValue(true));
-        $dataHelper->expects($this->once())->method('isContactsEnabled')->will($this->returnValue(false));
+        $dataHelper->expects($this->once())->method('isEnabled')->will($this->returnValue(true));
+        $dataHelper->expects($this->once())->method('isAllowed')
+            ->with($this->equalTo('route_controller_action'))
+            ->will($this->returnValue(true));
         $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
 
         $responseHelper = new Studioforty9_Recaptcha_Helper_Response(true);
@@ -118,46 +153,52 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
         $requestHelper->expects($this->once())->method('verify')->will($this->returnValue($responseHelper));
         $this->replaceByMock('helper', 'studioforty9_recaptcha/request', $requestHelper);
 
-        // Mock the controller object
-        $controller = $this->getMockController();
-
         // Mock the request object
         $request = $this->getMockRequest();
-
-        $controller->expects($this->once())
-            ->method('getRequest')
-            ->will($this->returnValue($request));
-
-        // Mock the event object
-        // Expect getControllerAction to be called once and return $controller
+        $request->expects($this->once())->method('isPost')->will($this->returnValue(true));
+        
+        // Mock the controller object
+        $controller = $this->getMockController();
+        $controller->expects($this->once())->method('getRequest')->will($this->returnValue($request));
+        $controller->expects($this->once())->method('getFullActionName')->will($this->returnValue('route_controller_action'));
+        
+        // Mock the event object, expects getControllerAction to be called once and return $controller
         $event = $this->getMockEvent($controller);
+        
         // Mock the observer object
         $observer = $this->getMockObserver();
+        
         // Expect getEvent to be called once and return the event object
         $observer->expects($this->once())->method('getEvent')->will($this->returnValue($event));
 
         // Call the onPostPreDispatch method
         $result = $this->observer->onPostPreDispatch($observer);
 
-        $this->assertInstanceOf('Varien_Event_Observer', $result);//*/
+        $this->assertNull($result);
     }
 
     public function test_onPostPreDispatch_returns_controller_on_verify_failed_with_module_enabled()
     {
-        $this->markTestSkipped();
-
-        /* Mock the data helper
+        $url = Mage::getBaseUrl() . 'contacts';
+        
+        // Mock the data helper
         $dataHelper = $this->getMockDataHelper();
-        // Expect isEnabled to called once and return true
-        $dataHelper->expects($this->exactly(2))->method('isEnabled')->will($this->returnValue(true));
+        $dataHelper->expects($this->once())->method('isEnabled')->will($this->returnValue(true));
+        $dataHelper->expects($this->once())->method('isAllowed')
+            ->with($this->equalTo('route_controller_action'))
+            ->will($this->returnValue(true));
         $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
+        
+        $redirectHelper = $this->getMockRedirectHelper();
+        $redirectHelper->expects($this->once())->method('getUrl')->will($this->returnValue($url));
+        $this->replaceByMock('helper', 'studioforty9_recaptcha/redirect', $redirectHelper);
 
         // Setup the expected response
         $responseHelper = new Studioforty9_Recaptcha_Helper_Response(false, array('missing-input-response'));
 
         // Mock the request helper
         $requestHelper = $this->getMockRequestHelper();
-        // Expect verify to be called once and return the $responseHelper
+        // Expect verify to be called once and return $responseHelper
         $requestHelper->expects($this->once())->method('verify')->will($this->returnValue($responseHelper));
         $this->replaceByMock('helper', 'studioforty9_recaptcha/request', $requestHelper);
 
@@ -167,65 +208,23 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
         // Expect setRedirect to be called once
         // It should set the redirect url to the base url + /contacts
         // And return the response object
-        $response->expects($this->once())
-            ->method('setRedirect')
-            ->with($this->equalTo(Mage::getBaseUrl() . 'contacts'))
-            ->will($this->returnSelf());
-
-        // Expect sendResponse to be called once
-        // And return the response object
-        $response->expects($this->once())
-            ->method('sendResponse')
-            ->will($this->returnSelf());
+        $response->expects($this->once())->method('setRedirect')->with($this->equalTo($url))->will($this->returnSelf());
 
         // Mock the request object
         $request = $this->getMockRequest();
-
-        // Expect setDispatched to be called once
-        // It should set the value to true
-        // And return the request object
-        $request->expects($this->once())
-            ->method('setDispatched')
-            ->with($this->equalTo(true))
-            ->will($this->returnSelf());
-
-        // Expect getBaseUrl to be called once
-        // And return the base url of the website
-        $request->expects($this->any())
-            ->method('getBaseUrl')
-            ->will($this->returnValue(Mage::getBaseUrl()));
+        $request->expects($this->once())->method('isPost')->will($this->returnValue(true));
+        $request->expects($this->once())->method('setDispatched')->with($this->equalTo(true))->will($this->returnSelf());
 
         // Mock the controller object
         $controller = $this->getMockController();
-
-        // Expect getResponse to be called once
-        // And return the response object
-        $controller->expects($this->once())
-            ->method('getResponse')
-            ->will($this->returnValue($response));
-
-        // Expect getRequest to be called twice
-        //  1. For getBaseUrl
-        //  2. For setDispatched
-        // And return the request object
-        $controller->expects($this->once())
-            ->method('getRequest')
-            ->will($this->returnValue($request));
-
-        // Expect setFlag to be called once
-        // It should set the following parameters:
-        //  1. $action  : '' (empty string)
-        //  2. $flag    : Mage_Core_Controller_Front_Action::FLAG_NO_DISPATCH ('no-dispatch')
-        //  3. $value   : true
-        // And return the controller object
-        $controller->expects($this->once())
-            ->method('setFlag')
-            ->with(
-                $this->equalTo(''),
-                $this->equalTo(Mage_Core_Controller_Front_Action::FLAG_NO_DISPATCH),
-                $this->equalTo(true)
-            )
-            ->will($this->returnSelf());
+        $controller->expects($this->once())->method('getFullActionName')->will($this->returnValue('route_controller_action'));
+        $controller->expects($this->once())->method('getResponse')->will($this->returnValue($response));
+        $controller->expects($this->exactly(2))->method('getRequest')->will($this->returnValue($request));
+        $controller->expects($this->once())->method('setFlag')->will($this->returnSelf())->with(
+            $this->equalTo(''),
+            $this->equalTo(Mage_Core_Controller_Front_Action::FLAG_NO_DISPATCH),
+            $this->equalTo(true)
+        );
 
         // Mock the event object
         $event = $this->getMockEvent($controller);
@@ -247,7 +246,161 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
             'There was an error with the recaptcha code, please try again.',
             $this->session->getMessages()->getLastAddedMessage()->getCode()
         );
-        //*/
+        
+        // Were the custom event dispatched
+        $this->assertEventDispatched('studioforty9_recaptcha_failed');
+        $this->assertEventDispatched('studioforty9_recaptcha_failed_route_controller_action');
+    }
+    
+    /**
+     * @test
+     */
+    public function it_saves_data_back_on_product_review_form_when_recaptcha_fails()
+    {
+        $this->replaceSession('review/session');
+        
+        $post = array('name' => 'value');
+        
+        // Mock the request object
+        $request = $this->getMockRequest();
+        $request->expects($this->once())->method('getPost')->will($this->returnValue($post));
+        
+        // Mock the controller object
+        $controller = $this->getMockBuilder('Mage_Core_Controller_Front_Action')
+            ->disableOriginalConstructor()
+            ->setMethods(array('getRequest'))
+            ->getMock();
+        $controller->expects($this->once())->method('getRequest')->will($this->returnValue($request));
+
+        // Mock the observer object
+        $observer = $this->getMockObserver();
+
+        // Mock the event object
+        $event = $this->getMockEvent($controller);
+
+        // Expect getEvent to be called once and return the event object
+        $observer->expects($this->once())->method('getEvent')->will($this->returnValue($event));
+
+        // Run the observer
+        $this->observer->onFailedRecaptchaProductReview($observer);
+        
+        $formData = Mage::getSingleton('review/session')->getFormData();
+        
+        $this->assertInternalType('array', $formData);
+        $this->assertArrayHasKey('name', $formData);
+        $this->assertEquals('value', $formData['name']);
+    }
+    
+    /**
+     * @test
+     */
+    public function it_saves_data_back_on_customer_resgistration_form_when_recaptcha_fails()
+    {
+        $this->replaceSession('customer/session');
+        
+        $post = array('name' => 'value');
+        
+        // Mock the request object
+        $request = $this->getMockRequest();
+        $request->expects($this->once())->method('getPost')->will($this->returnValue($post));
+        
+        // Mock the controller object
+        $controller = $this->getMockBuilder('Mage_Core_Controller_Front_Action')
+            ->disableOriginalConstructor()
+            ->setMethods(array('getRequest'))
+            ->getMock();
+        $controller->expects($this->once())->method('getRequest')->will($this->returnValue($request));
+
+        // Mock the observer object
+        $observer = $this->getMockObserver();
+
+        // Mock the event object
+        $event = $this->getMockEvent($controller);
+
+        // Expect getEvent to be called once and return the event object
+        $observer->expects($this->once())->method('getEvent')->will($this->returnValue($event));
+
+        // Run the observer
+        $this->observer->onFailedRecaptchaCustomerRegistration($observer);
+        
+        $formData = Mage::getSingleton('customer/session')->getCustomerFormData();
+        
+        $this->assertInternalType('array', $formData);
+        $this->assertArrayHasKey('name', $formData);
+        $this->assertEquals('value', $formData['name']);
+    }
+    
+    /**
+     * @test
+     */
+    public function it_saves_data_back_on_sendfriend_form_when_recaptcha_fails()
+    {
+        $this->replaceSession('catalog/session');
+        
+        $post = array('name' => 'value');
+        
+        // Mock the request object
+        $request = $this->getMockRequest();
+        $request->expects($this->once())->method('getPost')->will($this->returnValue($post));
+        
+        // Mock the controller object
+        $controller = $this->getMockBuilder('Mage_Core_Controller_Front_Action')
+            ->disableOriginalConstructor()
+            ->setMethods(array('getRequest'))
+            ->getMock();
+        $controller->expects($this->once())->method('getRequest')->will($this->returnValue($request));
+
+        // Mock the observer object
+        $observer = $this->getMockObserver();
+
+        // Mock the event object
+        $event = $this->getMockEvent($controller);
+
+        // Expect getEvent to be called once and return the event object
+        $observer->expects($this->once())->method('getEvent')->will($this->returnValue($event));
+
+        // Run the observer
+        $this->observer->onFailedRecaptchaSendFriend($observer);
+        
+        $formData = Mage::getSingleton('catalog/session')->getSendfriendFormData();
+        
+        $this->assertInternalType('array', $formData);
+        $this->assertArrayHasKey('name', $formData);
+        $this->assertEquals('value', $formData['name']);
+    }
+    
+    /**
+     * @test
+     */
+    public function it_saves_data_back_on_login_form_when_recaptcha_fails()
+    {
+        $this->replaceSession('customer/session');
+        
+        $post = array('username' => 'user@domain.tld');
+        
+        // Mock the request object
+        $request = $this->getMockRequest();
+        $request->expects($this->once())->method('getPost')->with($this->equalTo('login'))->will($this->returnValue($post));
+        
+        // Mock the controller object
+        $controller = $this->getMockBuilder('Mage_Core_Controller_Front_Action')->disableOriginalConstructor()->setMethods(array('getRequest'))->getMock();
+        $controller->expects($this->once())->method('getRequest')->will($this->returnValue($request));
+
+        // Mock the observer object
+        $observer = $this->getMockObserver();
+
+        // Mock the event object
+        $event = $this->getMockEvent($controller);
+
+        // Expect getEvent to be called once and return the event object
+        $observer->expects($this->once())->method('getEvent')->will($this->returnValue($event));
+
+        // Run the observer
+        $this->observer->onFailedRecaptchaLogin($observer);
+        
+        $username = Mage::getSingleton('customer/session')->getUsername();
+        
+        $this->assertEquals('user@domain.tld', $username);
     }
 
     /* ----- MOCK OBJECTS ----- */
@@ -257,7 +410,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
         // Mock Response
         $response = $this->getMockBuilder('Zend_Controller_Response_Abstract')
             ->disableOriginalConstructor()
-            ->setMethods(array('setRedirect', 'sendResponse'))
+            ->setMethods(array('setRedirect'))
             ->getMock();
 
         return $response;
@@ -267,7 +420,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
     {
         $request = $this->getMockBuilder('Zend_Controller_Request_Abstract')
             ->disableOriginalConstructor()
-            ->setMethods(array('setDispatched', 'getBaseUrl', 'getRouteName'))
+            ->setMethods(array('setDispatched', 'isPost', 'getPost'))
             ->getMock();
 
         // Expect getRouteName to be called
@@ -284,7 +437,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
         // Mock Controller
         $controller = $this->getMockBuilder('Mage_Core_Controller_Front_Action')
             ->disableOriginalConstructor()
-            ->setMethods(array('getResponse', 'getRequest', 'setFlag'))
+            ->setMethods(array('getResponse', 'getRequest', 'setFlag', 'getFullActionName'))
             ->getMock();
 
         return $controller;
@@ -303,8 +456,15 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
     protected function getMockDataHelper()
     {
         $helper = $this->getHelperMock('studioforty9_recaptcha', array(
-            'isEnabled', 'getSiteKey', 'getSecretKey', 'getTheme', 'isContactsEnabled'
+            'isEnabled', 'getSiteKey', 'getSecretKey', 'getTheme', 'isAllowed'
         ), false, array(), null, false);
+
+        return $helper;
+    }
+
+    protected function getMockRedirectHelper()
+    {
+        $helper = $this->getHelperMock('studioforty9_recaptcha/redirect', array('getUrl'), false, array(), null, false);
 
         return $helper;
     }
@@ -356,11 +516,5 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
         $this->replaceByMock('singleton', $type, $session);
 
         return $session;
-    }
-
-    private function _expects($object, $times, $method, $value)
-    {
-        $object->expects($times)->method($method)->will($value);
-        return $object;
     }
 }

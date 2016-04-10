@@ -7,7 +7,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.2.0
+ * @version   1.5.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -45,12 +45,12 @@ class Studioforty9_Recaptcha_Helper_Request extends Mage_Core_Helper_Abstract
     /**
      * Get the Http Client to use for the request to reCAPTCHA
      *
-     * @return Varien_Http_Client
+     * @return Zend_Http_Client
      */
     public function getHttpClient()
     {
         if (is_null($this->_client)) {
-            $this->_client = new Varien_Http_Client();
+            $this->_client = new Zend_Http_Client();
         }
         
         $this->_client->setUri(self::REQUEST_URL);
@@ -77,14 +77,14 @@ class Studioforty9_Recaptcha_Helper_Request extends Mage_Core_Helper_Abstract
 
         try {
             $response = $client->request('GET');
-            $body = $response->decodeGzip($response->getRawBody());
+            $body = $response->getBody();
             $data = Mage::helper('core')->jsonDecode($body);
             if (array_key_exists('error-codes', $data)) {
                 $errors = $data['error-codes'];
             }
         } catch (Exception $e) {
-            $data = array('success' => false);
             Mage::logException($e);
+            $data = array('success' => false);
         }
 
         return new Studioforty9_Recaptcha_Helper_Response($data['success'], $errors);

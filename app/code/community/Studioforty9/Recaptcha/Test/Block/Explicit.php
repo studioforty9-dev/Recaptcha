@@ -31,10 +31,10 @@ class Studioforty9_Recaptcha_Test_Block_Explicit extends EcomDev_PHPUnit_Test_Ca
         parent::setUp();
     }
 
-    protected function getMockDataHelper($enabled, $theme = 'light', $siteKey = '123456789', $secretKey = '987654321')
+    protected function getMockDataHelper($enabled, $theme = 'light', $siteKey = '123456789', $secretKey = '987654321', $type = 'image', $size = 'normal')
     {
         $helper = $this->getHelperMock('studioforty9_recaptcha', array(
-            'isEnabled', 'getSiteKey', 'getSecretKey', 'getTheme'
+            'isEnabled', 'getSiteKey', 'getSecretKey', 'getTheme', 'getType', 'getSize'
         ), false, array(), null, false);
         
         $helper->expects($this->any())
@@ -50,10 +50,17 @@ class Studioforty9_Recaptcha_Test_Block_Explicit extends EcomDev_PHPUnit_Test_Ca
             ->method('getSecretKey')
             ->will($this->returnValue($secretKey));
 
-
         $helper->expects($this->any())
             ->method('getTheme')
             ->will($this->returnValue($theme));
+
+        $helper->expects($this->any())
+            ->method('getType')
+            ->will($this->returnValue($type));
+
+        $helper->expects($this->any())
+            ->method('getSize')
+            ->will($this->returnValue($size));
 
         return $helper;
     }

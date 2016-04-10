@@ -22,6 +22,8 @@ $id = $this->getRecaptchaId();
             grecaptcha.render('el-<?php echo $id ?>', {
                 'sitekey': "<?php echo $this->getSiteKey(); ?>",
                 'theme': "<?php echo $this->getTheme(); ?>",
+                'type': "<?php echo $this->getType(); ?>",
+                'size': "<?php echo $this->getSize(); ?>",
                 'callback': function(response) {
                     if (response.length > 0) {
                         $('cb-<?php echo $id ?>').writeAttribute('value', 'checked');

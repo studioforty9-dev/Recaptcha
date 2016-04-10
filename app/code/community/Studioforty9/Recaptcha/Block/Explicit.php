@@ -102,8 +102,20 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
     }
 
     /**
+     * Get the recaptcha site key.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getSiteKey()
+    {
+        return Mage::helper('studioforty9_recaptcha')->getSiteKey();
+    }
+
+    /**
      * Get the recaptcha theme setting.
      *
+     * @codeCoverageIgnore
      * @return string
      */
     public function getTheme()
@@ -112,12 +124,24 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
     }
 
     /**
-     * Get the recaptcha site key.
+     * Get the recaptcha type setting.
      *
+     * @codeCoverageIgnore
      * @return string
      */
-    public function getSiteKey()
+    public function getType()
     {
-        return Mage::helper('studioforty9_recaptcha')->getSiteKey();
+        return Mage::helper('studioforty9_recaptcha')->getType();
+    }
+
+    /**
+     * Get the recaptcha size setting.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getSize()
+    {
+        return Mage::helper('studioforty9_recaptcha')->getSize();
     }
 }

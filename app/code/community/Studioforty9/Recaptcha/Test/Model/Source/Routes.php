@@ -39,41 +39,47 @@ class Studioforty9_Recaptcha_Test_Model_Source_Routes extends EcomDev_PHPUnit_Te
 
         $this->assertInternalType('array', $options);
         
-        $this->assertInternalType('array', $options[0]);
-        $this->assertArrayHasKey('value', $options[0]);
-        $this->assertArrayHasKey('label', $options[0]);
-        $this->assertEquals('contacts_index_post', $options[0]['value']);
-        $this->assertEquals('Contact Form', $options[0]['label']);
+        $contacts = $options[0];
+        $this->assertInternalType('array', $contacts);
+        $this->assertArrayHasKey('value', $contacts);
+        $this->assertArrayHasKey('label', $contacts);
+        $this->assertEquals('contacts_index_post', $contacts['value']);
+        $this->assertEquals('Contact Form', $contacts['label']);
         
-        $this->assertInternalType('array', $options[1]);
-        $this->assertArrayHasKey('value', $options[1]);
-        $this->assertArrayHasKey('label', $options[1]);
-        $this->assertEquals('review_product_post', $options[1]['value']);
-        $this->assertEquals('Product Review Form', $options[1]['label']);
+        $review = $options[1];
+        $this->assertInternalType('array', $review);
+        $this->assertArrayHasKey('value', $review);
+        $this->assertArrayHasKey('label', $review);
+        $this->assertEquals('review_product_post', $review['value']);
+        $this->assertEquals('Product Review Form', $review['label']);
         
-        $this->assertInternalType('array', $options[2]);
-        $this->assertArrayHasKey('value', $options[2]);
-        $this->assertArrayHasKey('label', $options[2]);
-        $this->assertEquals('customer_account_createpost', $options[2]['value']);
-        $this->assertEquals('Account Registration Form', $options[2]['label']);
+        $register = $options[2];
+        $this->assertInternalType('array', $register);
+        $this->assertArrayHasKey('value', $register);
+        $this->assertArrayHasKey('label', $register);
+        $this->assertEquals('customer_account_createpost', $register['value']);
+        $this->assertEquals('Account Registration Form', $register['label']);
         
-        $this->assertInternalType('array', $options[3]);
-        $this->assertArrayHasKey('value', $options[3]);
-        $this->assertArrayHasKey('label', $options[3]);
-        $this->assertEquals('sendfriend_product_sendmail', $options[3]['value']);
-        $this->assertEquals('Send to Friend Form', $options[3]['label']);
+        $sendfriend = $options[3];
+        $this->assertInternalType('array', $sendfriend);
+        $this->assertArrayHasKey('value', $sendfriend);
+        $this->assertArrayHasKey('label', $sendfriend);
+        $this->assertEquals('sendfriend_product_sendmail', $sendfriend['value']);
+        $this->assertEquals('Send to Friend Form', $sendfriend['label']);
         
-        $this->assertInternalType('array', $options[2]);
-        $this->assertArrayHasKey('value', $options[2]);
-        $this->assertArrayHasKey('label', $options[2]);
-        $this->assertEquals('customer_account_loginpost', $options[2]['value']);
-        $this->assertEquals('Login Form', $options[2]['label']);
+        $login = $options[4];
+        $this->assertInternalType('array', $login);
+        $this->assertArrayHasKey('value', $login);
+        $this->assertArrayHasKey('label', $login);
+        $this->assertEquals('customer_account_loginpost', $login['value']);
+        $this->assertEquals('Login Form', $login['label']);
         
-        $this->assertInternalType('array', $options[3]);
-        $this->assertArrayHasKey('value', $options[3]);
-        $this->assertArrayHasKey('label', $options[3]);
-        $this->assertEquals('customer_account_forgotpasswordpost', $options[3]['value']);
-        $this->assertEquals('Forgot Password Form', $options[3]['label']);
+        $password = $options[5];
+        $this->assertInternalType('array', $password);
+        $this->assertArrayHasKey('value', $password);
+        $this->assertArrayHasKey('label', $password);
+        $this->assertEquals('customer_account_forgotpasswordpost', $password['value']);
+        $this->assertEquals('Forgot Password Form', $password['label']);
         
         $this->assertEventDispatched('studioforty9_recaptcha_routes');
     }

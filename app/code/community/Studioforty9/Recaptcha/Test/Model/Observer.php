@@ -456,7 +456,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
     protected function getMockDataHelper()
     {
         $helper = $this->getHelperMock('studioforty9_recaptcha', array(
-            'isEnabled', 'getSiteKey', 'getSecretKey', 'getTheme', 'isAllowed'
+            'isEnabled', 'getSiteKey', 'getSecretKey', 'getTheme', 'getType', 'getSize', 'isAllowed'
         ), false, array(), null, false);
 
         return $helper;

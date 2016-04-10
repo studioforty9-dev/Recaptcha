@@ -76,7 +76,7 @@ class Studioforty9_Recaptcha_Model_Observer
      */
     public function onFailedRecaptchaProductReview(Varien_Event_Observer $observer)
     {
-        $data = $observer->getControllerAction()->getRequest()->getPost();
+        $data = $observer->getEvent()->getControllerAction()->getRequest()->getPost();
         Mage::getSingleton('review/session')->setFormData($data);
     }
     
@@ -88,7 +88,7 @@ class Studioforty9_Recaptcha_Model_Observer
      */
     public function onFailedRecaptchaCustomerRegistration(Varien_Event_Observer $observer)
     {
-        $data = $observer->getControllerAction()->getRequest()->getPost();
+        $data = $observer->getEvent()->getControllerAction()->getRequest()->getPost();
         Mage::getSingleton('customer/session')->setCustomerFormData($data);
     }
     
@@ -100,7 +100,7 @@ class Studioforty9_Recaptcha_Model_Observer
      */
     public function onFailedRecaptchaSendFriend(Varien_Event_Observer $observer)
     {
-        $data = $observer->getControllerAction()->getRequest()->getPost();
+        $data = $observer->getEvent()->getControllerAction()->getRequest()->getPost();
         Mage::getSingleton('catalog/session')->setSendfriendFormData($data);
     }
     
@@ -112,7 +112,7 @@ class Studioforty9_Recaptcha_Model_Observer
      */
     public function onFailedRecaptchaLogin(Varien_Event_Observer $observer)
     {
-        $data = $observer->getControllerAction()->getRequest()->getPost('login');
+        $data = $observer->getEvent()->getControllerAction()->getRequest()->getPost('login');
         $login = isset($data['username']) ? $data['username'] : null;
         Mage::getSingleton('customer/session')->setUsername($login);
     }

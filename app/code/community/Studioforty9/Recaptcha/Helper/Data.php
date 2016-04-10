@@ -29,6 +29,8 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     const MODULE_KEY_SITE = 'google/recaptcha/site_key';
     const MODULE_KEY_SECRET = 'google/recaptcha/secret_key';
     const MODULE_KEY_THEME = 'google/recaptcha/theme';
+    const MODULE_KEY_SIZE = 'google/recaptcha/size';
+    const MODULE_KEY_TYPE = 'google/recaptcha/type';
     const MODULE_KEY_ROUTES = 'google/recaptcha/enabled_routes';
     /**#@-*/
 
@@ -77,6 +79,28 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * The recaptcha widget type.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getType()
+    {
+        return Mage::getStoreConfig(self::MODULE_KEY_TYPE);
+    }
+
+    /**
+     * The recaptcha widget size.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getSize()
+    {
+        return Mage::getStoreConfig(self::MODULE_KEY_SIZE);
+    }
+
+    /**
      * The enabled routes.
      *
      * @codeCoverageIgnore
@@ -86,6 +110,7 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     {
         $routes =  explode(',', Mage::getStoreConfig(self::MODULE_KEY_ROUTES));
         array_map('strtolower', $routes);
+        
         return $routes;
     }
 

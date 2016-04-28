@@ -30,6 +30,7 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     const MODULE_ENABLED_REVIEWS = 'google/recaptcha/enabled_reviews';
     const MODULE_ENABLED_SENDFRIEND = 'google/recaptcha/enabled_sendfriend';
     const MODULE_ENABLED_CUSTOMER_REG = 'google/recaptcha/enabled_customer_registration';
+    const MODULE_OTHER_EVENTS_TO_OBSERVE = 'google/recaptcha/other_events_to_observe';
     const MODULE_KEY_SITE = 'google/recaptcha/site_key';
     const MODULE_KEY_SECRET = 'google/recaptcha/secret_key';
     const MODULE_KEY_THEME = 'google/recaptcha/theme';
@@ -158,17 +159,30 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * @codeCoverageIgnore
+     * @return array
+     */
+    public function getOtherEventsToObserve()
+    {
+        return array_map('trim', explode(PHP_EOL, Mage::getStoreConfig(self::MODULE_OTHER_EVENTS_TO_OBSERVE)));
+    }
+
+    /**
      * Is the module allowed to run.
      *
      * @todo Unit Test this method.
-     * @param string $route
+     * @param Mage_Core_Controller_Request_Http $request
      * @return bool
      */
-    public function isAllowed($route)
+    public function isAllowed(Mage_Core_Controller_Request_Http $request)
     {
         if (! Mage::getConfig()->getModuleConfig("Studioforty9_Recaptcha")->is('active', 'true')) {
             return false;
         }
+
+        $route = $request->getModuleName();
+
+        $fullName = $route . '_' . $request->getControllerName() . '_' . $request->getActionName();
         
         $acl = array(
             'contacts'   => $this->isContactsEnabled(),
@@ -177,6 +191,12 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
             'sendfriend' => $this->isSendFriendEnabled()
         );
 
-        return ($this->isEnabled() && array_key_exists($route, $acl) && $acl[$route] === true);
+        return (
+            $this->isEnabled() &&
+            (
+                in_array($fullName, $this->getOtherEventsToObserve()) ||
+                array_key_exists($route, $acl) && $acl[$route] === true
+            )
+        );
     }
 }

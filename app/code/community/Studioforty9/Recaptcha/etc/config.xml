@@ -15,7 +15,7 @@
 <config>
     <modules>
         <Studioforty9_Recaptcha>
-            <version>1.2.0</version>
+            <version>1.3.0</version>
         </Studioforty9_Recaptcha>
     </modules>
     <global>
@@ -53,38 +53,14 @@
             </modules>
         </translate>
         <events>
-            <controller_action_predispatch_contacts_index_post>
+            <controller_action_predispatch>
                 <observers>
                     <studioforty9_recaptcha>
                         <class>studioforty9_recaptcha/observer</class>
                         <method>onPostPreDispatch</method>
                     </studioforty9_recaptcha>
                 </observers>
-            </controller_action_predispatch_contacts_index_post>
-            <controller_action_predispatch_review_product_post>
-                <observers>
-                    <studioforty9_recaptcha>
-                        <class>studioforty9_recaptcha/observer</class>
-                        <method>onPostPreDispatch</method>
-                    </studioforty9_recaptcha>
-                </observers>
-            </controller_action_predispatch_review_product_post>
-            <controller_action_predispatch_customer_account_createpost>
-                <observers>
-                    <studioforty9_recaptcha>
-                        <class>studioforty9_recaptcha/observer</class>
-                        <method>onPostPreDispatch</method>
-                    </studioforty9_recaptcha>
-                </observers>
-            </controller_action_predispatch_customer_account_createpost>
-            <controller_action_predispatch_sendfriend_product_sendmail>
-                <observers>
-                    <studioforty9_recaptcha>
-                        <class>studioforty9_recaptcha/observer</class>
-                        <method>onPostPreDispatch</method>
-                    </studioforty9_recaptcha>
-                </observers>
-            </controller_action_predispatch_sendfriend_product_sendmail>
+            </controller_action_predispatch>
         </events>
     </frontend>
     <adminhtml>

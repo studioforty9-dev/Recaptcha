@@ -61,15 +61,15 @@ class Studioforty9_Recaptcha_Block_Autorender extends Mage_Core_Block_Template
      * Determine if the module configuration settings allow displaying
      * the widget in the current context.
      *
-     * @param string $route
+     * @param Mage_Core_Controller_Request_Http $request
      * @return bool
      */
-    public function isAllowed($route)
+    public function isAllowed($request)
     {
         if ($this->hasData('allow') && $this->getData('allow')) {
             return true;
         }
 
-        return Mage::helper('studioforty9_recaptcha')->isAllowed($route);
+        return Mage::helper('studioforty9_recaptcha')->isAllowed($request);
     }
 }

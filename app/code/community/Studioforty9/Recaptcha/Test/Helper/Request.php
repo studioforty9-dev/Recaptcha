@@ -44,17 +44,17 @@ class Studioforty9_Recaptcha_Test_Helper_Request extends EcomDev_PHPUnit_Test_Ca
     /**
      * Get a mock response object with the body value already set.
      *
-     * @param string $body
+     * @param string $rawBody
      * @return Zend_Http_Response
      */
-    protected function getMockResponse($body)
+    protected function getMockResponse($rawBody)
     {
         $response = $this->getMockBuilder('Zend_Http_Response')
             ->disableOriginalConstructor()
-            ->setMethods(array('getBody'))
+            ->setMethods(array('getRawBody'))
             ->getMock();
-        
-        $response->expects($this->any())->method('getBody')->will($this->returnValue($body));
+
+        $response->expects($this->any())->method('getRawBody')->will($this->returnValue(gzencode($rawBody)));
         
         return $response;
     }

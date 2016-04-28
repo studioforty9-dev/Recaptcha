@@ -69,6 +69,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </enabled_customer_registration>
+                        <other_events_to_observe translate="label">
+                            <label>Other Events to Observe</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Other events that need to verify recaptcha feature via server-to-server call (ex: newsletter_subscriber_new). Please note: each event must be in a new line.]]></comment>
+                        </other_events_to_observe>
                         <site_key translate="label">
                             <label>Site Key</label>
                             <frontend_type>text</frontend_type>

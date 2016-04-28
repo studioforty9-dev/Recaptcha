@@ -53,7 +53,7 @@ class Studioforty9_Recaptcha_Test_Helper_Request extends EcomDev_PHPUnit_Test_Ca
             ->disableOriginalConstructor()
             ->setMethods(array('getRawBody'))
             ->getMock();
-
+        
         $response->expects($this->any())->method('getRawBody')->will($this->returnValue(gzencode($rawBody)));
         
         return $response;

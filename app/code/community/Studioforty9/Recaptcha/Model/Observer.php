@@ -45,9 +45,7 @@ class Studioforty9_Recaptcha_Model_Observer
     }
 
     /**
-     * Run the event on the pre dispatch observer for:
-     *  - controller_action_predispatch_index_post
-     *  - controller_action_predispatch_review_product_post
+     * Run the event on the pre dispatch observer "controller_action_predispatch"
      *
      * @param Varien_Event_Observer $observer The observer from the controller
      * @return Varien_Event_Observer|Mage_Core_Controller_Front_Action
@@ -60,7 +58,12 @@ class Studioforty9_Recaptcha_Model_Observer
         /** @var Mage_Core_Controller_Front_Action $controller */
         $controller = $observer->getEvent()->getControllerAction();
 
-        if (! $this->getHelper()->isAllowed($controller->getRequest()->getRouteName())) {
+        if (! $this->getHelper()->isAllowed($controller->getRequest())) {
+            return $observer;
+        }
+
+        /** check if recaptcha field is in the post params */
+        if (! $controller->getRequest()->getPost(Studioforty9_Recaptcha_Helper_Request::REQUEST_RESPONSE)) {
             return $observer;
         }
 

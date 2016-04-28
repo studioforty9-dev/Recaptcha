@@ -12,7 +12,7 @@
  * @see       Studioforty9_Recaptcha_Block_Explicit
  */
 ?>
-<?php if ($this->isAllowed($this->getRequest()->getRouteName())): ?>
+<?php if ($this->isAllowed($this->getRequest())): ?>
 <div class="recaptcha" style="overflow:hidden;position:relative;">
     <input type="checkbox" id="recaptcha-verification-1" name="recaptcha-verification-1" value="" class="hide required-entry" style="visibility:hidden;position:absolute;left:-1000000px" />
     <div id="recaptcha-1"></div>

@@ -63,41 +63,11 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
         );
     }
 
-    public function test_config_has_contact_event_observer_defined()
+    public function test_config_has_observer_defined()
     {
         $this->assertEventObserverDefined(
             'frontend',
-            'controller_action_predispatch_contacts_index_post',
-            'studioforty9_recaptcha/observer',
-            'onPostPreDispatch'
-        );
-    }
-
-    public function test_config_has_review_event_observer_defined()
-    {
-        $this->assertEventObserverDefined(
-            'frontend',
-            'controller_action_predispatch_review_product_post',
-            'studioforty9_recaptcha/observer',
-            'onPostPreDispatch'
-        );
-    }
-
-    public function test_config_has_sendfriend_event_observer_defined()
-    {
-        $this->assertEventObserverDefined(
-            'frontend',
-            'controller_action_predispatch_sendfriend_product_sendmail',
-            'studioforty9_recaptcha/observer',
-            'onPostPreDispatch'
-        );
-    }
-
-    public function test_config_has_customer_registration_event_observer_defined()
-    {
-        $this->assertEventObserverDefined(
-            'frontend',
-            'controller_action_predispatch_customer_account_createpost',
+            'controller_action_predispatch',
             'studioforty9_recaptcha/observer',
             'onPostPreDispatch'
         );

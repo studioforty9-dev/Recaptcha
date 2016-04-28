@@ -12,7 +12,7 @@
  * @see       Studioforty9_Recaptcha_Block_Autorender
  */
 ?>
-<?php if ($this->isAllowed($this->getRequest()->getRouteName())): ?>
+<?php if ($this->isAllowed($this->getRequest())): ?>
 <div class="recaptcha">
     <?php echo $this->getRecaptchaHtml(); ?>
     <?php echo $this->getRecaptchaScript(); ?>

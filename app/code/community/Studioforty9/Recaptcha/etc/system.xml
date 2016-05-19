@@ -17,7 +17,7 @@
         <google>
             <groups>
                 <recaptcha translate="label title" module="studioforty9_recaptcha">
-                    <label>Google ReCaptcha</label>
+                    <label>Google reCAPTCHA</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>1000</sort_order>
                     <show_in_default>1</show_in_default>

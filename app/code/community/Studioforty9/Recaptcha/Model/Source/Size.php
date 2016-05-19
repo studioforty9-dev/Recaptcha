@@ -12,25 +12,25 @@
  */
 
 /**
- * Studioforty9_Recaptcha_Model_Source_Theme
+ * Studioforty9_Recaptcha_Model_Source_Size
  *
  * @category   Studioforty9
  * @package    Studioforty9_Recaptcha
  * @subpackage Model
  * @author     StudioForty9 <info@studioforty9.com>
  */
-class Studioforty9_Recaptcha_Model_Source_Theme
+class Studioforty9_Recaptcha_Model_Source_Size
 {
     /**
-     * Return the options for setting the theme.
+     * Return the options for setting the size.
      *
      * @return array
      */
     public function toOptionArray()
     {
         return array(
-            'light' => Mage::helper('studioforty9_recaptcha')->__('Light'),
-            'dark'  => Mage::helper('studioforty9_recaptcha')->__('Dark')
+            'normal'  => Mage::helper('studioforty9_recaptcha')->__('Normal'),
+            'compact' => Mage::helper('studioforty9_recaptcha')->__('Compact')
         );
     }
 }

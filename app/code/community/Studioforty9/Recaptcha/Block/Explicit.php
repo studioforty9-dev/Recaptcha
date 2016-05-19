@@ -7,7 +7,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.2.0
+ * @version   1.5.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -67,10 +67,11 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
         'uk_UA' => 'uk',
         'vi_VN' => 'vi'
     );
-
+    
     /**
      * Get the reCAPTACHA javascript code.
      *
+     * @param string $id
      * @return string
      */
     public function getRecaptchaScript()
@@ -101,18 +102,9 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
     }
 
     /**
-     * Get the recaptcha theme setting.
-     *
-     * @return string
-     */
-    public function getTheme()
-    {
-        return Mage::helper('studioforty9_recaptcha')->getTheme();
-    }
-
-    /**
      * Get the recaptcha site key.
      *
+     * @codeCoverageIgnore
      * @return string
      */
     public function getSiteKey()
@@ -121,18 +113,35 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
     }
 
     /**
-     * Determine if the module configuration settings allow displaying
-     * the widget in the current context.
+     * Get the recaptcha theme setting.
      *
-     * @param string $route
-     * @return bool
+     * @codeCoverageIgnore
+     * @return string
      */
-    public function isAllowed($route)
+    public function getTheme()
     {
-        if ($this->hasData('allow') && $this->getData('allow')) {
-            return true;
-        }
+        return Mage::helper('studioforty9_recaptcha')->getTheme();
+    }
 
-        return Mage::helper('studioforty9_recaptcha')->isAllowed($route);
+    /**
+     * Get the recaptcha type setting.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getType()
+    {
+        return Mage::helper('studioforty9_recaptcha')->getType();
+    }
+
+    /**
+     * Get the recaptcha size setting.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getSize()
+    {
+        return Mage::helper('studioforty9_recaptcha')->getSize();
     }
 }

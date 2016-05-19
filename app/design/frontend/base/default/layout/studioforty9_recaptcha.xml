@@ -8,7 +8,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.2.0
+ * @version   1.5.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 -->
@@ -26,9 +26,27 @@
         </reference>
     </review_product_list>
 
+    <customer_account_login>
+        <reference name="customer_form_login">
+            <block type="core/text_list" name="form.additional.info">
+                <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit" template="studioforty9/recaptcha/explicit.phtml"/>
+            </block>
+        </reference>  
+    </customer_account_login>
+    
+    <customer_account_forgotpassword>
+        <reference name="forgotPassword">
+            <block type="core/text_list" name="form.additional.info">
+                <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit" template="studioforty9/recaptcha/explicit.phtml"/>
+            </block>
+        </reference>
+    </customer_account_forgotpassword>
+    
     <customer_account_create>
         <reference name="customer_form_register">
-            <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit" template="studioforty9/recaptcha/explicit.phtml"/>
+            <block type="core/text_list" name="form.additional.info">
+                <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit" template="studioforty9/recaptcha/explicit.phtml"/>
+            </block>
         </reference>
     </customer_account_create>
 

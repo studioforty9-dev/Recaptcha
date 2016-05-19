@@ -7,7 +7,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.2.0
+ * @version   1.5.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -22,73 +22,98 @@
 class Studioforty9_Recaptcha_Model_Observer
 {
     /**
-     * @var Studioforty9_Recaptcha_Helper_Data
-     */
-    protected $_helper;
-
-    /**
-     * Set the module data helper.
-     */
-    public function __construct()
-    {
-        $this->_helper = Mage::helper('studioforty9_recaptcha');
-    }
-
-    /**
-     * Get the module data helper
+     * Run the event on the pre dispatch observer for a controller action
      *
-     * @return Studioforty9_Recaptcha_Helper_Data
-     */
-    public function getHelper()
-    {
-        return $this->_helper;
-    }
-
-    /**
-     * Run the event on the pre dispatch observer for:
-     *  - controller_action_predispatch_index_post
-     *  - controller_action_predispatch_review_product_post
-     *
-     * @param Varien_Event_Observer $observer The observer from the controller
-     * @return Varien_Event_Observer|Mage_Core_Controller_Front_Action
+     * @param Varien_Event_Observer $observer The dispatched observer
+     * @return Mage_Core_Controller_Front_Action
      */
     public function onPostPreDispatch(Varien_Event_Observer $observer)
-    {
-        if (! $this->getHelper()->isEnabled()) {
-            return $observer;
-        }
+    {   
+        if (! Mage::helper('studioforty9_recaptcha')->isEnabled()) return;
+
         /** @var Mage_Core_Controller_Front_Action $controller */
         $controller = $observer->getEvent()->getControllerAction();
-
-        if (! $this->getHelper()->isAllowed($controller->getRequest()->getRouteName())) {
-            return $observer;
-        }
-
-        /** @var Studioforty9_Recaptcha_Helper_Request $request */
-        $request = Mage::helper('studioforty9_recaptcha/request');
+        if (! $controller->getRequest()->isPost()) return;
+        
+        $route = $controller->getFullActionName();
+        if (! Mage::helper('studioforty9_recaptcha')->isAllowed($route)) return;
+        
         /** @var Studioforty9_Recaptcha_Helper_Response $response */
-        $response = $request->verify();
-
-        if ($response->isSuccess()) {
-            return $observer;
-        }
-
+        $response = Mage::helper('studioforty9_recaptcha/request')->verify();
+        if ($response->isSuccess()) return;
+        
+        /** reCAPTCHA Verification Failed **/
+        
         Mage::getSingleton('core/session')->addError(
-            $response->__(
+            Mage::helper('studioforty9_recaptcha')->__(
                 'There was an error with the recaptcha code, please try again.'
             )
         );
-
-        if ($response->hasErrors()) {
-            $response->log();
-        }
-
+        
         $flag = Mage_Core_Controller_Varien_Action::FLAG_NO_DISPATCH;
-        $redirectUrl = $this->getHelper()->getRedirectUrl();
-        $controller->getResponse()->setRedirect($redirectUrl)->sendResponse();
+        $redirectUrl = Mage::helper('studioforty9_recaptcha/redirect')->getUrl();
+
         $controller->getRequest()->setDispatched(true);
         $controller->setFlag('', $flag, true);
-
+        $controller->getResponse()->setRedirect($redirectUrl);
+        
+        $payload = array(
+            'controller_action'  => $controller,
+            'recaptcha_response' => $response
+        );
+        
+        Mage::dispatchEvent('studioforty9_recaptcha_failed', $payload);
+        Mage::dispatchEvent('studioforty9_recaptcha_failed_' . $route, $payload);
+				
         return $controller;
+    }
+    
+    /**
+     * Run additional logic on a failed recaptcha verification for the review form.
+     *
+     * @param Varien_Event_Observer $observer The dispatched observer
+     * @return Mage_Core_Controller_Front_Action
+     */
+    public function onFailedRecaptchaProductReview(Varien_Event_Observer $observer)
+    {
+        $data = $observer->getEvent()->getControllerAction()->getRequest()->getPost();
+        Mage::getSingleton('review/session')->setFormData($data);
+    }
+    
+    /**
+     * Run additional logic on a failed recaptcha verification for the customer registration form.
+     *
+     * @param Varien_Event_Observer $observer The dispatched observer
+     * @return Mage_Core_Controller_Front_Action
+     */
+    public function onFailedRecaptchaCustomerRegistration(Varien_Event_Observer $observer)
+    {
+        $data = $observer->getEvent()->getControllerAction()->getRequest()->getPost();
+        Mage::getSingleton('customer/session')->setCustomerFormData($data);
+    }
+    
+    /**
+     * Run additional logic on a failed recaptcha verification for the send to friend form.
+     *
+     * @param Varien_Event_Observer $observer The dispatched observer
+     * @return Mage_Core_Controller_Front_Action
+     */
+    public function onFailedRecaptchaSendFriend(Varien_Event_Observer $observer)
+    {
+        $data = $observer->getEvent()->getControllerAction()->getRequest()->getPost();
+        Mage::getSingleton('catalog/session')->setSendfriendFormData($data);
+    }
+    
+    /**
+     * Run additional logic on a failed recaptcha verification for the forgot password form.
+     *
+     * @param Varien_Event_Observer $observer The dispatched observer
+     * @return Mage_Core_Controller_Front_Action
+     */
+    public function onFailedRecaptchaLogin(Varien_Event_Observer $observer)
+    {
+        $data = $observer->getEvent()->getControllerAction()->getRequest()->getPost('login');
+        $login = isset($data['username']) ? $data['username'] : null;
+        Mage::getSingleton('customer/session')->setUsername($login);
     }
 }

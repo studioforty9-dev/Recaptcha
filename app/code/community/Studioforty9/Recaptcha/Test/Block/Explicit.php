@@ -7,7 +7,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.2.0
+ * @version   1.5.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -31,12 +31,12 @@ class Studioforty9_Recaptcha_Test_Block_Explicit extends EcomDev_PHPUnit_Test_Ca
         parent::setUp();
     }
 
-    protected function getMockDataHelper($enabled, $theme = 'light', $siteKey = '123456789', $secretKey = '987654321')
+    protected function getMockDataHelper($enabled, $theme = 'light', $siteKey = '123456789', $secretKey = '987654321', $type = 'image', $size = 'normal')
     {
         $helper = $this->getHelperMock('studioforty9_recaptcha', array(
-            'isEnabled', 'getSiteKey', 'getSecretKey', 'getTheme'
+            'isEnabled', 'getSiteKey', 'getSecretKey', 'getTheme', 'getType', 'getSize'
         ), false, array(), null, false);
-
+        
         $helper->expects($this->any())
             ->method('isEnabled')
             ->will($this->returnValue($enabled));
@@ -50,10 +50,17 @@ class Studioforty9_Recaptcha_Test_Block_Explicit extends EcomDev_PHPUnit_Test_Ca
             ->method('getSecretKey')
             ->will($this->returnValue($secretKey));
 
-
         $helper->expects($this->any())
             ->method('getTheme')
             ->will($this->returnValue($theme));
+
+        $helper->expects($this->any())
+            ->method('getType')
+            ->will($this->returnValue($type));
+
+        $helper->expects($this->any())
+            ->method('getSize')
+            ->will($this->returnValue($size));
 
         return $helper;
     }
@@ -69,12 +76,10 @@ class Studioforty9_Recaptcha_Test_Block_Explicit extends EcomDev_PHPUnit_Test_Ca
     }
 
     public function test_getRecaptchaScript_returns_script_tag_html_when_module_enabled()
-    {
+    {   
         $dataHelper = $this->getMockDataHelper(true);
         $locale = 'de_DE';
-        $lang = 'de';
-
-        Mage::app()->getLocale()->setLocaleCode($locale);
+        $lang = 'de';Mage::app()->getLocale()->setLocaleCode($locale);
         Mage::getSingleton('core/translate')->setLocale($locale)->init('frontend', true);
         $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
 

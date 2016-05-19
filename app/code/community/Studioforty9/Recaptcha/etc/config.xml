@@ -8,14 +8,14 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.2.0
+ * @version   1.5.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 -->
 <config>
     <modules>
         <Studioforty9_Recaptcha>
-            <version>1.2.0</version>
+            <version>1.5.0</version>
         </Studioforty9_Recaptcha>
     </modules>
     <global>
@@ -34,6 +34,14 @@
                 <class>Studioforty9_Recaptcha_Model</class>
             </studioforty9_recaptcha>
         </models>
+        <resources>
+            <studioforty9_recaptcha_setup>
+                 <setup>
+                      <module>Studioforty9_Recaptcha</module>
+                      <class>Mage_Core_Model_Resource_Setup</class>
+                 </setup>
+            </studioforty9_recaptcha_setup>
+        </resources>
     </global>
     <frontend>
         <layout>
@@ -53,38 +61,54 @@
             </modules>
         </translate>
         <events>
-            <controller_action_predispatch_contacts_index_post>
+            <controller_action_predispatch>
                 <observers>
                     <studioforty9_recaptcha>
                         <class>studioforty9_recaptcha/observer</class>
                         <method>onPostPreDispatch</method>
                     </studioforty9_recaptcha>
                 </observers>
-            </controller_action_predispatch_contacts_index_post>
-            <controller_action_predispatch_review_product_post>
+            </controller_action_predispatch>
+            <studioforty9_recaptcha_failed_review_product_post>
                 <observers>
                     <studioforty9_recaptcha>
                         <class>studioforty9_recaptcha/observer</class>
-                        <method>onPostPreDispatch</method>
+                        <method>onFailedRecaptchaProductReview</method>
                     </studioforty9_recaptcha>
                 </observers>
-            </controller_action_predispatch_review_product_post>
-            <controller_action_predispatch_customer_account_createpost>
+            </studioforty9_recaptcha_failed_review_product_post>
+            <studioforty9_recaptcha_failed_customer_account_createpost>
                 <observers>
                     <studioforty9_recaptcha>
                         <class>studioforty9_recaptcha/observer</class>
-                        <method>onPostPreDispatch</method>
+                        <method>onFailedRecaptchaCustomerRegistration</method>
                     </studioforty9_recaptcha>
                 </observers>
-            </controller_action_predispatch_customer_account_createpost>
-            <controller_action_predispatch_sendfriend_product_sendmail>
+            </studioforty9_recaptcha_failed_customer_account_createpost>
+            <studioforty9_recaptcha_failed_sendfriend_product_sendmail>
                 <observers>
                     <studioforty9_recaptcha>
                         <class>studioforty9_recaptcha/observer</class>
-                        <method>onPostPreDispatch</method>
+                        <method>onFailedRecaptchaSendFriend</method>
                     </studioforty9_recaptcha>
                 </observers>
-            </controller_action_predispatch_sendfriend_product_sendmail>
+            </studioforty9_recaptcha_failed_sendfriend_product_sendmail>
+            <studioforty9_recaptcha_failed_customer_account_loginPost>
+                <observers>
+                    <studioforty9_recaptcha>
+                        <class>studioforty9_recaptcha/observer</class>
+                        <method>onFailedRecaptchaLogin</method>
+                    </studioforty9_recaptcha>
+                </observers>
+            </studioforty9_recaptcha_failed_customer_account_loginPost>
+            <studioforty9_recaptcha_failed_customer_account_forgotpasswordpost>
+                <observers>
+                    <studioforty9_recaptcha>
+                        <class>studioforty9_recaptcha/observer</class>
+                        <method>onFailedRecaptchaForgotPassword</method>
+                    </studioforty9_recaptcha>
+                </observers>
+            </studioforty9_recaptcha_failed_customer_account_forgotpasswordpost>
         </events>
     </frontend>
     <adminhtml>
@@ -123,6 +147,7 @@
                 <site_key></site_key>
                 <secret_key></secret_key>
                 <theme>light</theme>
+                <enabled_routes><![CDATA[]]></enabled_routes>
             </recaptcha>
         </google>
     </default>

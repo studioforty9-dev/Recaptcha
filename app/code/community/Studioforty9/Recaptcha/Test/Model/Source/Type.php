@@ -12,21 +12,21 @@
  */
 
 /**
- * Studioforty9_Recaptcha_Test_Model_Source_Theme
+ * Studioforty9_Recaptcha_Test_Model_Source_Type
  *
  * @category   Studioforty9
  * @package    Studioforty9_Recaptcha
  * @subpackage Test
  * @author     StudioForty9 <info@studioforty9.com>
  */
-class Studioforty9_Recaptcha_Test_Model_Source_Theme extends EcomDev_PHPUnit_Test_Case
+class Studioforty9_Recaptcha_Test_Model_Source_Type extends EcomDev_PHPUnit_Test_Case
 {
-    /** @var Studioforty9_Recaptcha_Model_Source_Theme $observer */
+    /** @var Studioforty9_Recaptcha_Model_Source_Type $observer */
     protected $model;
 
     public function setUp()
     {
-        $this->model = new Studioforty9_Recaptcha_Model_Source_Theme();
+        $this->model = new Studioforty9_Recaptcha_Model_Source_Type();
     }
 
     /**
@@ -37,10 +37,10 @@ class Studioforty9_Recaptcha_Test_Model_Source_Theme extends EcomDev_PHPUnit_Tes
     {
         $options = $this->model->toOptionArray();
 
-        $this->assertArrayHasKey('light', $options);
-        $this->assertArrayHasKey('dark', $options);
+        $this->assertArrayHasKey('image', $options);
+        $this->assertArrayHasKey('audio', $options);
 
-        $this->assertEquals('Light', $options['light']);
-        $this->assertEquals('Dark', $options['dark']);
+        $this->assertEquals('Image', $options['image']);
+        $this->assertEquals('Audio', $options['audio']);
     }
 }

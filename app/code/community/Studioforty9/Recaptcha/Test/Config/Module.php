@@ -7,7 +7,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.2.0
+ * @version   1.5.0
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -30,7 +30,7 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
 
     public function test_module_version_is_correct()
     {
-        $this->assertModuleVersion('1.2.0');
+        $this->assertModuleVersion('1.5.0');
     }
 
 
@@ -49,6 +49,7 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
     public function test_helpers_are_configured()
     {
         $this->assertHelperAlias('studioforty9_recaptcha/data', 'Studioforty9_Recaptcha_Helper_Data');
+        $this->assertHelperAlias('studioforty9_recaptcha/redirect', 'Studioforty9_Recaptcha_Helper_Redirect');
         $this->assertHelperAlias('studioforty9_recaptcha/request', 'Studioforty9_Recaptcha_Helper_Request');
         $this->assertHelperAlias('studioforty9_recaptcha/response', 'Studioforty9_Recaptcha_Helper_Response');
     }
@@ -62,12 +63,12 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
             'ReCaptcha Configuration Settings'
         );
     }
-
+    
     public function test_config_has_contact_event_observer_defined()
     {
         $this->assertEventObserverDefined(
             'frontend',
-            'controller_action_predispatch_contacts_index_post',
+            'controller_action_predispatch',
             'studioforty9_recaptcha/observer',
             'onPostPreDispatch'
         );
@@ -77,9 +78,9 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
     {
         $this->assertEventObserverDefined(
             'frontend',
-            'controller_action_predispatch_review_product_post',
+            'studioforty9_recaptcha_failed_review_product_post',
             'studioforty9_recaptcha/observer',
-            'onPostPreDispatch'
+            'onFailedRecaptchaProductReview'
         );
     }
 
@@ -87,9 +88,9 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
     {
         $this->assertEventObserverDefined(
             'frontend',
-            'controller_action_predispatch_sendfriend_product_sendmail',
+            'studioforty9_recaptcha_failed_customer_account_createpost',
             'studioforty9_recaptcha/observer',
-            'onPostPreDispatch'
+            'onFailedRecaptchaCustomerRegistration'
         );
     }
 
@@ -97,9 +98,9 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
     {
         $this->assertEventObserverDefined(
             'frontend',
-            'controller_action_predispatch_customer_account_createpost',
+            'studioforty9_recaptcha_failed_sendfriend_product_sendmail',
             'studioforty9_recaptcha/observer',
-            'onPostPreDispatch'
+            'onFailedRecaptchaSendFriend'
         );
     }
 

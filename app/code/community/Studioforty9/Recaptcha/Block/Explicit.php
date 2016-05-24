@@ -144,4 +144,14 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
     {
         return Mage::helper('studioforty9_recaptcha')->getSize();
     }
+
+    /**
+     * Get a unique ID for the recaptcha block.
+     *
+     * @return string
+     */
+    public function getRecaptchaId()
+    {
+        return uniqid();
+    }
 }

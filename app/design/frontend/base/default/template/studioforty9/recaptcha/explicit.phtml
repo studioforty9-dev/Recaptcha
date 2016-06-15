@@ -13,6 +13,7 @@
  */
 
 $id = $this->getRecaptchaId();
+if ( Mage::getStoreConfigFlag('google/recaptcha/enabled') ) :
 ?>
 <div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
     <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="hide required-entry" style="visibility:hidden; position:absolute; left:-1000000px" />
@@ -35,3 +36,4 @@ $id = $this->getRecaptchaId();
     </script>
     <?php echo $this->getRecaptchaScript(); ?>
 </div>
+<?php endif; ?>

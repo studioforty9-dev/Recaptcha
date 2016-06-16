@@ -126,8 +126,14 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
         if (! $this->isModuleActive() || ! $this->isEnabled()) {
             return false;
         }
-
-        return in_array(strtolower($route), $this->getEnabledRoutes());
+        
+        foreach($this->getEnabledRoutes() as $enabledRoute){
+            if(strpos($enabledRoute, $route) !== false){
+                return true;
+            }
+        }
+        
+        return false;
     }
 		
     /**

@@ -128,7 +128,7 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
         }
         
         foreach($this->getEnabledRoutes() as $enabledRoute){
-            if(strpos($enabledRoute, $route) !== false){
+            if(strpos($route, $enabledRoute) !== false){
                 return true;
             }
         }

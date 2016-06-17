@@ -30,12 +30,12 @@ class Studioforty9_Recaptcha_Model_Source_Routes
     {
         $routes = new Studioforty9_Recaptcha_Model_Routes();
         
-        $routes->add('contacts_index_post', Mage::helper('studioforty9_recaptcha')->__('Contact Form'));
-        $routes->add('review_product_post', Mage::helper('studioforty9_recaptcha')->__('Product Review Form'));
-        $routes->add('customer_account_createpost', Mage::helper('studioforty9_recaptcha')->__('Account Registration Form'));
-        $routes->add('sendfriend_product_sendmail', Mage::helper('studioforty9_recaptcha')->__('Send to Friend Form'));
-        $routes->add('customer_account_loginpost', Mage::helper('studioforty9_recaptcha')->__('Login Form'));
-        $routes->add('customer_account_forgotpasswordpost', Mage::helper('studioforty9_recaptcha')->__('Forgot Password Form'));
+        $routes->add('contacts_index', Mage::helper('studioforty9_recaptcha')->__('Contact Form'));
+        $routes->add('review_product', Mage::helper('studioforty9_recaptcha')->__('Product Review Form'));
+        $routes->add('customer_account_create', Mage::helper('studioforty9_recaptcha')->__('Account Registration Form'));
+        $routes->add('sendfriend_product_send', Mage::helper('studioforty9_recaptcha')->__('Send to Friend Form'));
+        $routes->add('customer_account_login', Mage::helper('studioforty9_recaptcha')->__('Login Form'));
+        $routes->add('customer_account_forgotpassword', Mage::helper('studioforty9_recaptcha')->__('Forgot Password Form'));
         
         Mage::dispatchEvent('studioforty9_recaptcha_routes', array('routes' => $routes));
         

@@ -115,6 +115,24 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * Is the provided route enabled.
+     *
+     * @codeCoverageIgnore
+     * @param string $route
+     * @return bool
+     */
+    public function isEnabledRoute($route)
+    {
+        foreach ($this->getEnabledRoutes() as $enabledRoute) {
+            if (false !== strpos($route, $enabledRoute)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Is the module allowed to run.
      *
      * @codeCoverageIgnore
@@ -127,13 +145,7 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
             return false;
         }
         
-        foreach($this->getEnabledRoutes() as $enabledRoute){
-            if(strpos($enabledRoute, $route) !== false){
-                return true;
-            }
-        }
-        
-        return false;
+        return $this->isEnabledRoute($route);
     }
 		
     /**

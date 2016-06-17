@@ -67,16 +67,74 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
         'uk_UA' => 'uk',
         'vi_VN' => 'vi'
     );
-    
+
+    /**
+     * Is the block allowed to display.
+     *
+     * @param string $route
+     * @return bool
+     */
+    public function isAllowed($route = '')
+    {
+        if ($this->hasData('allow')) {
+            return (bool) $this->getData('allow');
+        }
+
+        return $this->_getHelper()->isAllowed($route);
+    }
+
+    /**
+     * Get the recaptcha site key.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getSiteKey()
+    {
+        return $this->_getHelper()->getSiteKey();
+    }
+
+    /**
+     * Get the recaptcha theme setting.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getTheme()
+    {
+        return $this->_getHelper()->getTheme();
+    }
+
+    /**
+     * Get the recaptcha type setting.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->_getHelper()->getType();
+    }
+
+    /**
+     * Get the recaptcha size setting.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getSize()
+    {
+        return $this->_getHelper()->getSize();
+    }
+
     /**
      * Get the reCAPTACHA javascript code.
      *
-     * @param string $id
      * @return string
      */
     public function getRecaptchaScript()
     {
-        if (! Mage::helper('studioforty9_recaptcha')->isEnabled()) {
+        if (! $this->_getHelper()->isEnabled()) {
             return '';
         }
 
@@ -102,50 +160,6 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
     }
 
     /**
-     * Get the recaptcha site key.
-     *
-     * @codeCoverageIgnore
-     * @return string
-     */
-    public function getSiteKey()
-    {
-        return Mage::helper('studioforty9_recaptcha')->getSiteKey();
-    }
-
-    /**
-     * Get the recaptcha theme setting.
-     *
-     * @codeCoverageIgnore
-     * @return string
-     */
-    public function getTheme()
-    {
-        return Mage::helper('studioforty9_recaptcha')->getTheme();
-    }
-
-    /**
-     * Get the recaptcha type setting.
-     *
-     * @codeCoverageIgnore
-     * @return string
-     */
-    public function getType()
-    {
-        return Mage::helper('studioforty9_recaptcha')->getType();
-    }
-
-    /**
-     * Get the recaptcha size setting.
-     *
-     * @codeCoverageIgnore
-     * @return string
-     */
-    public function getSize()
-    {
-        return Mage::helper('studioforty9_recaptcha')->getSize();
-    }
-
-    /**
      * Get a unique ID for the recaptcha block.
      *
      * @return string
@@ -153,5 +167,15 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
     public function getRecaptchaId()
     {
         return uniqid();
+    }
+
+    /**
+     * Get the recaptcha helper.
+     *
+     * @return Studioforty9_Recaptcha_Helper_Data
+     */
+    protected function _getHelper()
+    {
+        return Mage::helper('studioforty9_recaptcha');
     }
 }

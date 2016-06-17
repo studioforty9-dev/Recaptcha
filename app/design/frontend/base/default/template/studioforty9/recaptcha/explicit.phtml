@@ -11,12 +11,10 @@
  * @link      https://github.com/studioforty9/recaptcha
  * @see       Studioforty9_Recaptcha_Block_Explicit
  */
-
 $id = $this->getRecaptchaId();
-$helper = Mage::helper('studioforty9_recaptcha');
-
-if( $helper->isAllowed($this->getAction()->getFullActionName())) :
 ?>
+<?php if ($this->isAllowed($this->getAction()->getFullActionName())): ?>
+
 <div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
     <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="hide required-entry" style="visibility:hidden; position:absolute; left:-1000000px" />
     <div id="el-<?php echo $id ?>"></div>

@@ -28,22 +28,26 @@ class Studioforty9_Recaptcha_Test_Helper_Redirect extends EcomDev_PHPUnit_Test_C
     {
         $this->helper = new Studioforty9_Recaptcha_Helper_Redirect();
     }
-    
+
     /**
      * @test
+     * @group helpers
+     * @group Recaptcha
      */
     public function it_automatically_creates_a_session_instance_if_none_is_set()
     {
         $session = $this->getModelMockBuilder('core/session')->disableOriginalConstructor()->getMock();
         $this->replaceByMock('singleton', 'core/session', $session);
-        
+
         $session = $this->helper->getSession();
-	
+
         $this->assertInstanceOf('Mage_Core_Model_Session', $session);
     }
-    
+
     /**
      * @test
+     * @group helpers
+     * @group Recaptcha
      */
     public function it_can_set_a_different_session_instance()
     {
@@ -54,9 +58,11 @@ class Studioforty9_Recaptcha_Test_Helper_Redirect extends EcomDev_PHPUnit_Test_C
 	
         $this->assertInstanceOf('Mage_Customer_Model_Session', $session);
     }
-    
+
     /**
      * @test
+     * @group helpers
+     * @group Recaptcha
      */
     public function it_can_get_the_refereral_url_as_a_priority()
     {
@@ -74,9 +80,11 @@ class Studioforty9_Recaptcha_Test_Helper_Redirect extends EcomDev_PHPUnit_Test_C
         
         $this->assertEquals($url, $referer);
     }
-    
+
     /**
      * @test
+     * @group helpers
+     * @group Recaptcha
      */
     public function it_can_get_the_referer_param_when_http_referer_is_missing()
     {
@@ -94,9 +102,11 @@ class Studioforty9_Recaptcha_Test_Helper_Redirect extends EcomDev_PHPUnit_Test_C
         
         $this->assertEquals($url, $referer);
     }
-    
+
     /**
      * @test
+     * @group helpers
+     * @group Recaptcha
      */
     public function it_can_get_the_referer_base64_url_param_when_referer_param_missing()
     {
@@ -114,9 +124,11 @@ class Studioforty9_Recaptcha_Test_Helper_Redirect extends EcomDev_PHPUnit_Test_C
         
         $this->assertEquals(Mage::helper('core')->urlDecode($url), $referer);
     }
-    
+
     /**
      * @test
+     * @group helpers
+     * @group Recaptcha
      */
     public function it_can_get_the_referer_encoded_url_when_referer_base64_url_param_missing()
     {
@@ -134,9 +146,11 @@ class Studioforty9_Recaptcha_Test_Helper_Redirect extends EcomDev_PHPUnit_Test_C
         
         $this->assertEquals(Mage::helper('core')->urlDecode($url), $referer);
     }
-    
+
     /**
      * @test
+     * @group helpers
+     * @group Recaptcha
      */
     public function it_can_use_the_session_last_url_as_a_backup()
     {
@@ -156,9 +170,11 @@ class Studioforty9_Recaptcha_Test_Helper_Redirect extends EcomDev_PHPUnit_Test_C
         
         $this->assertEquals($url, $referer);
     }
-    
+
     /**
      * @test
+     * @group helpers
+     * @group Recaptcha
      */
     public function it_can_use_the_session_visitor_data_as_a_fallback()
     {
@@ -178,9 +194,11 @@ class Studioforty9_Recaptcha_Test_Helper_Redirect extends EcomDev_PHPUnit_Test_C
         
         $this->assertEquals($url, $referer);
     }
-    
+
     /**
      * @test
+     * @group helpers
+     * @group Recaptcha
      */
     public function it_can_use_the_store_base_url_as_a_last_resort()
     {   

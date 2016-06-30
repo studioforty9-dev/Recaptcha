@@ -32,6 +32,7 @@ class Studioforty9_Recaptcha_Test_Model_Source_Theme extends EcomDev_PHPUnit_Tes
     /**
      * @test
      * @group source
+     * @group Recaptcha
      */
     public function it_returns_expected_array_items()
     {

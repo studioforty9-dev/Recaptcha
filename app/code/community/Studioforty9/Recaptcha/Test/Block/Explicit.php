@@ -65,7 +65,12 @@ class Studioforty9_Recaptcha_Test_Block_Explicit extends EcomDev_PHPUnit_Test_Ca
         return $helper;
     }
 
-    public function test_getRecaptchaScript_returns_empty_string_when_module_disabled()
+    /**
+     * @test
+     * @group config
+     * @group Recaptcha
+     */
+    public function it_returns_empty_string_when_module_disabled()
     {
         $dataHelper = $this->getMockDataHelper(false);
         $this->replaceByMock('helper', 'studioforty9_recaptcha', $dataHelper);
@@ -75,7 +80,12 @@ class Studioforty9_Recaptcha_Test_Block_Explicit extends EcomDev_PHPUnit_Test_Ca
         $this->assertEquals($expected, $actual);
     }
 
-    public function test_getRecaptchaScript_returns_script_tag_html_when_module_enabled()
+    /**
+     * @test
+     * @group config
+     * @group Recaptcha
+     */
+    public function it_returns_script_tag_html_when_module_enabled()
     {   
         $dataHelper = $this->getMockDataHelper(true);
         $locale = 'de_DE';

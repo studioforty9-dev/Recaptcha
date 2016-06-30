@@ -24,27 +24,47 @@ class Studioforty9_Recaptcha_Test_Helper_Response extends EcomDev_PHPUnit_Test_C
     /** @var Studioforty9_Recaptcha_Helper_Response $helper */
     protected $helper;
 
-    public function test_can_construct_with_success_true()
+    /**
+     * @test
+     * @group helpers
+     * @group Recaptcha
+     */
+    public function it_can_construct_with_success_true()
     {
         $helper = new Studioforty9_Recaptcha_Helper_Response(true);
         $this->assertTrue($helper->isSuccess());
     }
-    
-    public function test_can_construct_with_success_false()
+
+    /**
+     * @test
+     * @group helpers
+     * @group Recaptcha
+     */
+    public function it_can_construct_with_success_false()
     {
         $helper = new Studioforty9_Recaptcha_Helper_Response(false);
         $this->assertTrue($helper->isFailure());
     }
-    
-    public function test_error_code_strings_are_correct()
+
+    /**
+     * @test
+     * @group helpers
+     * @group Recaptcha
+     */
+    public function it_has_correct_error_code_strings()
     {
         $this->assertEquals('missing-input-secret', Studioforty9_Recaptcha_Helper_Response::MISSING_INPUT_SECRET);
         $this->assertEquals('invalid-input-secret', Studioforty9_Recaptcha_Helper_Response::INVALID_INPUT_SECRET);
         $this->assertEquals('missing-input-response', Studioforty9_Recaptcha_Helper_Response::MISSING_INPUT_RESPONSE);
         $this->assertEquals('invalid-input-response', Studioforty9_Recaptcha_Helper_Response::INVALID_INPUT_RESPONSE);
     }
-    
-    public function test_error_descriptions_are_correct()
+
+    /**
+     * @test
+     * @group helpers
+     * @group Recaptcha
+     */
+    public function it_has_correct_error_descriptions()
     {
         $helper = new Studioforty9_Recaptcha_Helper_Response(false);
         
@@ -65,8 +85,13 @@ class Studioforty9_Recaptcha_Test_Helper_Response extends EcomDev_PHPUnit_Test_C
             $helper->getErrorDescription(Studioforty9_Recaptcha_Helper_Response::INVALID_INPUT_RESPONSE)
         );
     }
-    
-    public function test_getErrorDescription_returns_unknown_error_string_when_something_unknown_is_passed_in()
+
+    /**
+     * @test
+     * @group helpers
+     * @group Recaptcha
+     */
+    public function it_returns_unknown_error_string_when_something_unknown_is_passed_in()
     {
         $helper = new Studioforty9_Recaptcha_Helper_Response(false);
         $this->assertEquals(
@@ -74,20 +99,35 @@ class Studioforty9_Recaptcha_Test_Helper_Response extends EcomDev_PHPUnit_Test_C
             $helper->getErrorDescription('not a real error')
         );
     }
-    
-    public function test_hasErrors_returns_false_when_constructed_with_no_errors()
+
+    /**
+     * @test
+     * @group helpers
+     * @group Recaptcha
+     */
+    public function it_returns_false_when_constructed_with_no_errors()
     {
         $helper = new Studioforty9_Recaptcha_Helper_Response(false);
         $this->assertFalse($helper->hasErrors());
     }
-    
-    public function test_hasErrors_returns_true_when_constructed_with_errors()
+
+    /**
+     * @test
+     * @group helpers
+     * @group Recaptcha
+     */
+    public function it_returns_true_when_constructed_with_errors()
     {
         $helper = new Studioforty9_Recaptcha_Helper_Response(false, array(Studioforty9_Recaptcha_Helper_Response::MISSING_INPUT_RESPONSE));
         $this->assertTrue($helper->hasErrors());
     }
-    
-    public function test_getErrors_returns_expected_descriptions()
+
+    /**
+     * @test
+     * @group helpers
+     * @group Recaptcha
+     */
+    public function it_returns_expected_descriptions()
     {
         $errorCodes = array(
             Studioforty9_Recaptcha_Helper_Response::MISSING_INPUT_SECRET,

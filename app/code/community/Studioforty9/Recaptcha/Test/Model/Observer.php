@@ -38,6 +38,8 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
      * We should ensure that the verify method is not called.
      *
      * @test
+     * @group observer
+     * @group Recaptcha
      */
     public function it_doesnt_execute_verify_when_the_module_is_disabled()
     {
@@ -55,7 +57,9 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
     
     /**
      * @test
+     * @group observer
      * @group onPostPreDispatch
+     * @group Recaptcha
      */
     public function onPostPreDispatch_returns_null_when_request_method_is_not_post()
     {
@@ -91,7 +95,9 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
     
     /**
      * @test
+     * @group observer
      * @group onPostPreDispatch
+     * @group Recaptcha
      */
     public function onPostPreDispatch_returns_null_when_route_is_not_allowed()
     {
@@ -134,7 +140,9 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
 
     /**
      * @test
+     * @group observer
      * @group onPostPreDispatch
+     * @group Recaptcha
      */
     public function onPostPreDispatch_returns_observer_on_verify_success_when_module_enabled()
     {
@@ -254,6 +262,8 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
     
     /**
      * @test
+     * @group observer
+     * @group Recaptcha
      */
     public function it_saves_data_back_on_product_review_form_when_recaptcha_fails()
     {
@@ -293,6 +303,8 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
     
     /**
      * @test
+     * @group observer
+     * @group Recaptcha
      */
     public function it_saves_data_back_on_customer_resgistration_form_when_recaptcha_fails()
     {
@@ -332,6 +344,8 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
     
     /**
      * @test
+     * @group observer
+     * @group Recaptcha
      */
     public function it_saves_data_back_on_sendfriend_form_when_recaptcha_fails()
     {
@@ -371,6 +385,8 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
     
     /**
      * @test
+     * @group observer
+     * @group Recaptcha
      */
     public function it_saves_data_back_on_login_form_when_recaptcha_fails()
     {

@@ -32,6 +32,7 @@ class Studioforty9_Recaptcha_Test_Model_Source_Routes extends EcomDev_PHPUnit_Te
     /**
      * @test
      * @group source
+     * @group Recaptcha
      */
     public function test_toOptionArray_returns_expected_array()
     {

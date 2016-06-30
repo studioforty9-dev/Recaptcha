@@ -1,0 +1,2 @@
+config:
+  default/google/recaptcha/enabled_routes: \"\"

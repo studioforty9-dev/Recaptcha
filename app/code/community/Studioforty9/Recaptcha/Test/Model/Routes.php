@@ -31,7 +31,8 @@ class Studioforty9_Recaptcha_Test_Model_Routes extends EcomDev_PHPUnit_Test_Case
     
     /**
      * @test
-     * @group source
+     * @group routes
+     * @group Recaptcha
      */
     public function it_can_add_a_route()
     {
@@ -48,7 +49,8 @@ class Studioforty9_Recaptcha_Test_Model_Routes extends EcomDev_PHPUnit_Test_Case
     
     /**
      * @test
-     * @group source
+     * @group routes
+     * @group Recaptcha
      */
     public function it_can_remove_a_route()
     {
@@ -61,7 +63,8 @@ class Studioforty9_Recaptcha_Test_Model_Routes extends EcomDev_PHPUnit_Test_Case
     
     /**
      * @test
-     * @group source
+     * @group routes
+     * @group Recaptcha
      */
     public function it_can_find_a_route()
     {
@@ -74,7 +77,8 @@ class Studioforty9_Recaptcha_Test_Model_Routes extends EcomDev_PHPUnit_Test_Case
     
     /**
      * @test
-     * @group source
+     * @group routes
+     * @group Recaptcha
      * @expectedException Exception
      * @expectedExceptionMessage some_fake_action could not be found or was not allocated.
      */
@@ -89,7 +93,8 @@ class Studioforty9_Recaptcha_Test_Model_Routes extends EcomDev_PHPUnit_Test_Case
     
     /**
      * @test
-     * @group source
+     * @group routes
+     * @group Recaptcha
      */
     public function it_can_count_all_routes()
     {
@@ -101,7 +106,8 @@ class Studioforty9_Recaptcha_Test_Model_Routes extends EcomDev_PHPUnit_Test_Case
     
     /**
      * @test
-     * @group source
+     * @group routes
+     * @group Recaptcha
      */
     public function it_can_clear_all_routes()
     {
@@ -117,7 +123,8 @@ class Studioforty9_Recaptcha_Test_Model_Routes extends EcomDev_PHPUnit_Test_Case
     
     /**
      * @test
-     * @group source
+     * @group routes
+     * @group Recaptcha
      */
     public function it_can_cast_routes_to_an_array()
     {

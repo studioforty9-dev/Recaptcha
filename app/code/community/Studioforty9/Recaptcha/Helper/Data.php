@@ -108,7 +108,7 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getEnabledRoutes()
     {
-        $routes =  explode(',', Mage::getStoreConfig(self::MODULE_KEY_ROUTES));
+        $routes = array_filter(explode(',', Mage::getStoreConfig(self::MODULE_KEY_ROUTES)));
         array_map('strtolower', $routes);
         
         return $routes;

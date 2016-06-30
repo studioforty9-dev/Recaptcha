@@ -69,15 +69,15 @@ class Studioforty9_Recaptcha_Helper_Request extends Mage_Core_Helper_Abstract
         $params = array(
             'secret'   => $this->_getHelper()->getSecretKey(),
             'response' => $this->_getRequest()->getPost(self::REQUEST_RESPONSE),
-            'remoteip' => $this->_getRequest()->getClientIp(true)
+            'remoteip' => $this->_getRequest()->getClientIp(true),
         );
         
         $client = $this->getHttpClient();
-        $client->setParameterGet($params);
+        $client->setParameterPost($params);
         $errors = array();
 
         try {
-            $response = $client->request('GET');
+            $response = $client->request('POST');
             $body = $response->getBody();
             $data = Mage::helper('core')->jsonDecode($body);
             if (array_key_exists('error-codes', $data)) {

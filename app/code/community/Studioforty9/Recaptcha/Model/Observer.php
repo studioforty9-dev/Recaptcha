@@ -7,7 +7,7 @@
  * @author    StudioForty9 <info@studioforty9.com>
  * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
  * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
- * @version   1.5.0
+ * @version   1.5.6
  * @link      https://github.com/studioforty9/recaptcha
  */
 
@@ -111,6 +111,19 @@ class Studioforty9_Recaptcha_Model_Observer
      * @return Mage_Core_Controller_Front_Action
      */
     public function onFailedRecaptchaLogin(Varien_Event_Observer $observer)
+    {
+        $data = $observer->getEvent()->getControllerAction()->getRequest()->getPost('login');
+        $login = isset($data['username']) ? $data['username'] : null;
+        Mage::getSingleton('customer/session')->setUsername($login);
+    }
+
+    /**
+     * Run additional logic on a failed recaptcha verification for the forgot password form.
+     *
+     * @param Varien_Event_Observer $observer The dispatched observer
+     * @return Mage_Core_Controller_Front_Action
+     */
+    public function onFailedRecaptchaForgotPassword(Varien_Event_Observer $observer)
     {
         $data = $observer->getEvent()->getControllerAction()->getRequest()->getPost('login');
         $login = isset($data['username']) ? $data['username'] : null;

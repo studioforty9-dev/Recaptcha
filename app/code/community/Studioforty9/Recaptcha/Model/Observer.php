@@ -125,8 +125,7 @@ class Studioforty9_Recaptcha_Model_Observer
      */
     public function onFailedRecaptchaForgotPassword(Varien_Event_Observer $observer)
     {
-        $data = $observer->getEvent()->getControllerAction()->getRequest()->getPost('login');
-        $login = isset($data['username']) ? $data['username'] : null;
-        Mage::getSingleton('customer/session')->setUsername($login);
+        $email = $observer->getEvent()->getControllerAction()->getRequest()->getPost('email');
+        Mage::getSingleton('customer/session')->setForgottenEmail($email);
     }
 }

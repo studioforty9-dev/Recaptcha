@@ -53,13 +53,13 @@ class Studioforty9_Recaptcha_Test_Helper_Data extends EcomDev_PHPUnit_Test_Case
         // We have to reset the routes in order to run this test
         $keyRoutes = Studioforty9_Recaptcha_Helper_Data::MODULE_KEY_ROUTES;
         $oldRoutes = Mage::getStoreConfig($keyRoutes);
-        Mage::app()->getStore(0)->setConfig($keyRoutes, ',,,');
+        Mage::app()->getStore()->setConfig($keyRoutes, ',,,');
 
         $routes = $this->helper->getEnabledRoutes();
 
         $this->assertInternalType('array', $routes);
         $this->assertEmpty($routes);
 
-        Mage::app()->getStore(0)->setConfig($keyRoutes, $oldRoutes);
+        Mage::app()->getStore()->setConfig($keyRoutes, $oldRoutes);
     }
 }

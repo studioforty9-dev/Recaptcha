@@ -19,7 +19,15 @@ $id = $this->getRecaptchaId();
     <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="required-entry" style="visibility:hidden; position:absolute; left:-1000000px" />
     <div id="el-<?php echo $id ?>"></div>
     <script type="text/javascript">
-        var onloadCallback = function() {
+        <?php if ($this->shouldCallScript()): ?>
+            var recaptchaCallbacks = [];
+            var onloadCallback = function() {
+                recaptchaCallbacks.forEach(function(callback) {
+                    callback();
+                });
+            };
+        <?php endif; ?>
+        recaptchaCallbacks.push(function() {
             grecaptcha.render('el-<?php echo $id ?>', {
                 'sitekey': "<?php echo $this->getSiteKey(); ?>",
                 'theme': "<?php echo $this->getTheme(); ?>",
@@ -32,8 +40,10 @@ $id = $this->getRecaptchaId();
                     }
                 }
             });
-        };
+        });
     </script>
-    <?php echo $this->getRecaptchaScript(); ?>
+    <?php if ($this->shouldCallScript()): ?>
+        <?php echo $this->getRecaptchaScript(); ?>
+    <?php endif; ?>
 </div>
 <?php endif; ?>

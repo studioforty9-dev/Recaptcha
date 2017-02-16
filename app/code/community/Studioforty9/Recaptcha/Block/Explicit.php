@@ -67,6 +67,11 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
         'uk_UA' => 'uk',
         'vi_VN' => 'vi'
     );
+    
+    /**
+     * @var
+     */
+    protected $_shouldCallScript = null;
 
     /**
      * Is the block allowed to display.
@@ -177,5 +182,24 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
     protected function _getHelper()
     {
         return Mage::helper('studioforty9_recaptcha');
+    }
+
+    /**
+     * Should we call the script again ?
+     *
+     * @return bool
+     */
+    public function shouldCallScript()
+    {
+        if (is_null($this->_shouldCallScript)) {
+            if (Mage::getSingleton('studioforty9_recaptcha/counter')->getCount()) {
+                $this->_shouldCallScript = false;
+            } else {
+                Mage::getSingleton('studioforty9_recaptcha/counter')->increase();
+                $this->_shouldCallScript = true;
+            }
+        }
+
+        return $this->_shouldCallScript;
     }
 }

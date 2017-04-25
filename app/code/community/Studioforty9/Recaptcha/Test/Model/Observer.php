@@ -436,7 +436,7 @@ class Studioforty9_Recaptcha_Test_Model_Observer extends EcomDev_PHPUnit_Test_Ca
     {
         $request = $this->getMockBuilder('Zend_Controller_Request_Abstract')
             ->disableOriginalConstructor()
-            ->setMethods(array('setDispatched', 'isPost', 'getPost'))
+            ->setMethods(array('setDispatched', 'isPost', 'getPost', 'getRouteName'))
             ->getMock();
 
         // Expect getRouteName to be called

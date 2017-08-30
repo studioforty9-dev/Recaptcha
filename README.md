@@ -30,7 +30,7 @@ Add the repository to your project composer.json file:
 
 ```json
 "repositories": [
-    {"type": "composer", "url": "http://packages.firegento.com"}
+    {"type": "composer", "url": "https://packages.firegento.com"}
 ],
 ```
 

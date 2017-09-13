@@ -21,7 +21,7 @@ $defaultButtonsSelectors[$uniqId]['routes'] = 'customer_account_login';
 $defaultButtonsSelectors[$uniqId]['buttons'] = '#login-form .button:submit';
 $uniqId = uniqid();
 $defaultButtonsSelectors[$uniqId]['routes'] = 'customer_account_forgotpassword';
-$defaultButtonsSelectors[$uniqId]['buttons'] = '.customer_account_forgotpassword #form-validate .button:submit';
+$defaultButtonsSelectors[$uniqId]['buttons'] = '.customer-account-forgotpassword #form-validate .button:submit';
 
 // System Configuration update
 $envConfig = array(

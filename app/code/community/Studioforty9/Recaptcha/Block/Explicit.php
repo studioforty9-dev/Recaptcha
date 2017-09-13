@@ -122,6 +122,17 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
     }
 
     /**
+     * Get the recaptcha invisible setting.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function isInvisible()
+    {
+        return $this->_getHelper()->isInvisible();
+    }
+
+    /**
      * Get the recaptcha size setting.
      *
      * @codeCoverageIgnore
@@ -201,5 +212,23 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
         }
 
         return $this->_shouldCallScript;
+    }
+
+    /**
+     * Get the button selector for a specific route
+     *
+     * @param $currentRoute
+     * @return bool
+     */
+    public function getButtonSelector($currentRoute)
+    {
+        $buttonsSelectors = Mage::helper('core/unserializeArray')->unserialize($this->_getHelper()->getButtonsSelector());
+        foreach ($buttonsSelectors as $key => $buttonsSelector) {
+            if (false !== strpos($currentRoute, $buttonsSelector['routes'])) {
+                return $buttonsSelector['buttons'];
+            }
+        }
+
+        return false;
     }
 }

@@ -14,36 +14,73 @@
 $id = $this->getRecaptchaId();
 ?>
 <?php if ($this->isAllowed($this->getAction()->getFullActionName())): ?>
-
-<div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
-    <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="required-entry" style="visibility:hidden; position:absolute; left:-1000000px" />
-    <div id="el-<?php echo $id ?>"></div>
-    <script type="text/javascript">
-        <?php if ($this->shouldCallScript()): ?>
-            var recaptchaCallbacks = [];
-            var onloadCallback = function() {
-                recaptchaCallbacks.forEach(function(callback) {
-                    callback();
+    <?php if ($this->isInvisible()): ?>
+        <?php $buttonSelect = $this->getButtonSelector($this->getAction()->getFullActionName()); ?>
+        <div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
+            <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="required-entry" style="visibility:hidden; position:absolute; left:-1000000px" />
+            <script type="text/javascript">
+                jQuery(document).ready(function(){
+                    jQuery('<?php echo $buttonSelect ?>').attr('id', "el-<?php echo $id; ?>");
                 });
-            };
-        <?php endif; ?>
-        recaptchaCallbacks.push(function() {
-            grecaptcha.render('el-<?php echo $id ?>', {
-                'sitekey': "<?php echo $this->getSiteKey(); ?>",
-                'theme': "<?php echo $this->getTheme(); ?>",
-                'type': "<?php echo $this->getType(); ?>",
-                'size': "<?php echo $this->getSize(); ?>",
-                'callback': function(response) {
-                    if (response.length > 0) {
-                        $('cb-<?php echo $id ?>').writeAttribute('value', 'checked');
-                        $('cb-<?php echo $id ?>').checked = true;
-                    }
-                }
-            });
-        });
-    </script>
-    <?php if ($this->shouldCallScript()): ?>
-        <?php echo $this->getRecaptchaScript(); ?>
+                <?php if ($this->shouldCallScript()): ?>
+                    var recaptchaCallbacks = [];
+                    var onloadCallback = function() {
+                        recaptchaCallbacks.forEach(function(callback) {
+                            callback();
+                        });
+                    };
+                <?php endif; ?>
+                recaptchaCallbacks.push(function() {
+                    grecaptcha.render("el-<?php echo $id; ?>", {
+                        'sitekey': "<?php echo $this->getSiteKey(); ?>",
+                        'theme': "<?php echo $this->getTheme(); ?>",
+                        'type': "<?php echo $this->getType(); ?>",
+                        'size': "invisible",
+                        'callback': function(response) {
+                            if (response.length > 0) {
+                                $('cb-<?php echo $id ?>').writeAttribute('value', 'checked');
+                                $('cb-<?php echo $id ?>').checked = true;
+                            }
+                            jQuery('<?php echo $buttonSelect ?>').closest('form').submit();
+                        }
+                    });
+                });
+            </script>
+            <?php if ($this->shouldCallScript()): ?>
+                <?php echo $this->getRecaptchaScript(); ?>
+            <?php endif; ?>
+        </div>
+    <?php else: ?>
+        <div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
+            <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="required-entry" style="visibility:hidden; position:absolute; left:-1000000px" />
+            <div id="el-<?php echo $id ?>"></div>
+            <script type="text/javascript">
+                <?php if ($this->shouldCallScript()): ?>
+                    var recaptchaCallbacks = [];
+                    var onloadCallback = function() {
+                        recaptchaCallbacks.forEach(function(callback) {
+                            callback();
+                        });
+                    };
+                <?php endif; ?>
+                recaptchaCallbacks.push(function() {
+                    grecaptcha.render('el-<?php echo $id ?>', {
+                        'sitekey': "<?php echo $this->getSiteKey(); ?>",
+                        'theme': "<?php echo $this->getTheme(); ?>",
+                        'type': "<?php echo $this->getType(); ?>",
+                        'size': "<?php echo $this->getSize(); ?>",
+                        'callback': function(response) {
+                            if (response.length > 0) {
+                                $('cb-<?php echo $id ?>').writeAttribute('value', 'checked');
+                                $('cb-<?php echo $id ?>').checked = true;
+                            }
+                        }
+                    });
+                });
+            </script>
+            <?php if ($this->shouldCallScript()): ?>
+                <?php echo $this->getRecaptchaScript(); ?>
+            <?php endif; ?>
+        </div>
     <?php endif; ?>
-</div>
 <?php endif; ?>

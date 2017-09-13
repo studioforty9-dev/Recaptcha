@@ -32,6 +32,8 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     const MODULE_KEY_SIZE = 'google/recaptcha/size';
     const MODULE_KEY_TYPE = 'google/recaptcha/type';
     const MODULE_KEY_ROUTES = 'google/recaptcha/enabled_routes';
+    const MODULE_INVISIBLE = 'google/recaptcha/invisible';
+    const MODULE_BUTTONS_SELECTOR = 'google/recaptcha/buttons_selectors';
     /**#@-*/
 
     /**
@@ -87,6 +89,28 @@ class Studioforty9_Recaptcha_Helper_Data extends Mage_Core_Helper_Abstract
     public function getType()
     {
         return Mage::getStoreConfig(self::MODULE_KEY_TYPE);
+    }
+
+    /**
+     * The recaptcha widget buttons selector.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getButtonsSelector()
+    {
+        return Mage::getStoreConfig(self::MODULE_BUTTONS_SELECTOR);
+    }
+
+    /**
+     * The recaptcha widget invisible.
+     *
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function isInvisible()
+    {
+        return Mage::getStoreConfigFlag(self::MODULE_INVISIBLE);
     }
 
     /**

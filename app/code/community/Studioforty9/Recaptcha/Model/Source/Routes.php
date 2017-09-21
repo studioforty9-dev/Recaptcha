@@ -36,7 +36,8 @@ class Studioforty9_Recaptcha_Model_Source_Routes
         $routes->add('sendfriend_product_send', Mage::helper('studioforty9_recaptcha')->__('Send to Friend Form'));
         $routes->add('customer_account_login', Mage::helper('studioforty9_recaptcha')->__('Login Form'));
         $routes->add('customer_account_forgotpassword', Mage::helper('studioforty9_recaptcha')->__('Forgot Password Form'));
-        
+        $routes->add('checkout_onepage_index', Mage::helper('studioforty9_recaptcha')->__('Checkout Onepage Login & Register'));
+
         Mage::dispatchEvent('studioforty9_recaptcha_routes', array('routes' => $routes));
         
         return $routes->toArray();

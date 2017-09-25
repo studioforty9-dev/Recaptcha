@@ -56,4 +56,17 @@
         </reference>
     </sendfriend_product_send>
 
+    <checkout_onepage_index>
+        <reference name="checkout.onepage.login">
+            <block type="core/text_list" name="form.additional.info">
+                <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit.login" template="studioforty9/recaptcha/explicit.phtml"/>
+            </block>
+        </reference>
+        <reference name="checkout.onepage.billing">
+            <block type="core/text_list" name="form.additional.info.register">
+                <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit.register" template="studioforty9/recaptcha/explicit.phtml"/>
+            </block>
+        </reference>
+    </checkout_onepage_index>
+
 </layout>

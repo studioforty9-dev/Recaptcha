@@ -14,10 +14,11 @@
 $id = $this->getRecaptchaId();
 ?>
 <?php if ($this->isAllowed($this->getAction()->getFullActionName())): ?>
+    <?php Mage::getSingleton('core/session')->setCallRecaptchaScript(true); ?>
     <?php if ($this->isInvisible()): ?>
         <?php $buttonSelect = $this->getButtonSelector($this->getAction()->getFullActionName()); ?>
         <div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
-            <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="required-entry" style="visibility:hidden; position:absolute; left:-1000000px" />
+            <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" style="visibility:hidden; position:absolute; left:-1000000px" />
             <script type="text/javascript">
                 jQuery(document).ready(function(){
                     jQuery('<?php echo $buttonSelect ?>').attr('id', "el-<?php echo $id; ?>");
@@ -46,9 +47,6 @@ $id = $this->getRecaptchaId();
                     });
                 });
             </script>
-            <?php if ($this->shouldCallScript()): ?>
-                <?php echo $this->getRecaptchaScript(); ?>
-            <?php endif; ?>
         </div>
     <?php else: ?>
         <div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
@@ -78,9 +76,6 @@ $id = $this->getRecaptchaId();
                     });
                 });
             </script>
-            <?php if ($this->shouldCallScript()): ?>
-                <?php echo $this->getRecaptchaScript(); ?>
-            <?php endif; ?>
         </div>
     <?php endif; ?>
 <?php endif; ?>

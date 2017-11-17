@@ -1,0 +1,4 @@
+<?php if (Mage::getSingleton('core/session')->getCallRecaptchaScript()): ?>
+    <?php echo $this->getRecaptchaScript(); ?>
+    <?php Mage::getSingleton('core/session')->setCallRecaptchaScript(false); ?>
+<?php endif; ?>

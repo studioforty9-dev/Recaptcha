@@ -14,6 +14,12 @@
 -->
 <layout version="0.1.0">
 
+    <default>
+        <reference name="before_body_end">
+            <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.script" template="studioforty9/recaptcha/script.phtml"/>
+        </reference>
+    </default>
+
     <contacts_index_index>
         <reference name="contactForm">
             <block type="studioforty9_recaptcha/explicit" name="studioforty9.recaptcha.explicit" template="studioforty9/recaptcha/explicit.phtml"/>

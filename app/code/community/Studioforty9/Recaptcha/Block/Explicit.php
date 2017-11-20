@@ -229,6 +229,14 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
             }
         }
 
-        return false;
+        if ($parentBlockName) {
+            foreach ($buttonsSelectors as $key => $buttonsSelector) {
+                if (array_key_exists('parent_block_name', $buttonsSelector)
+                    && $buttonsSelector['parent_block_name']
+                    && false !== strpos($parentBlockName, $buttonsSelector['parent_block_name'])) {
+                    return $buttonsSelector['buttons'];
+                }
+            }
+        }
     }
 }

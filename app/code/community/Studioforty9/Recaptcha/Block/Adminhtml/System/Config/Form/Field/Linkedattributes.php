@@ -18,6 +18,12 @@ class Studioforty9_Recaptcha_Block_Adminhtml_System_Config_Form_Field_Linkedattr
             'label' => Mage::helper('adminhtml')->__('Route'),
             'size'  => 20,
         ));
+
+        $this->addColumn('parent_block_name', array(
+            'label' => Mage::helper('adminhtml')->__('Parent Block Name'),
+            'size'  => 20,
+        ));
+        
         $this->addColumn('buttons', array(
             'label' => Mage::helper('adminhtml')->__('Button Selector'),
             'size'  => 20,

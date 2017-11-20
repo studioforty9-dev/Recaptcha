@@ -1,4 +1,10 @@
 <?php if (Mage::getSingleton('core/session')->getCallRecaptchaScript()): ?>
     <?php echo $this->getRecaptchaScript(); ?>
     <?php Mage::getSingleton('core/session')->setCallRecaptchaScript(false); ?>
+    <script type="text/javascript">
+        // Always position the recaptcha badge to the body to fix visual issues (for example when added to a popup)
+        jQuery(document).ready(function(){
+            jQuery('.grecaptcha-badge').appendTo('body');
+        });
+    </script>
 <?php endif; ?>

@@ -12,11 +12,14 @@
  * @see       Studioforty9_Recaptcha_Block_Explicit
  */
 $id = $this->getRecaptchaId();
+
 ?>
 <?php if ($this->isAllowed($this->getAction()->getFullActionName())): ?>
     <?php Mage::getSingleton('core/session')->setCallRecaptchaScript(true); ?>
     <?php if ($this->isInvisible()): ?>
-        <?php $buttonSelect = $this->getButtonSelector($this->getAction()->getFullActionName()); ?>
+        <?php $parentBlock = $this->getParentBlock(); ?>
+        <?php $parentBlockNameInLayout = $parentBlock->getNameInLayout(); ?>
+        <?php $buttonSelect = $this->getButtonSelector($this->getAction()->getFullActionName(), $parentBlockNameInLayout); ?>
         <div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
             <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" style="visibility:hidden; position:absolute; left:-1000000px" />
             <script type="text/javascript">

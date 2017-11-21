@@ -220,7 +220,7 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
      * @param $currentRoute
      * @return bool
      */
-    public function getButtonSelector($currentRoute)
+    public function getButtonSelector($currentRoute, $parentBlockName)
     {
         $buttonsSelectors = Mage::helper('core/unserializeArray')->unserialize($this->_getHelper()->getButtonsSelector());
         foreach ($buttonsSelectors as $key => $buttonsSelector) {

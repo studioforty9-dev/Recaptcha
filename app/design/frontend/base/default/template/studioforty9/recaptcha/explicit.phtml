@@ -39,6 +39,7 @@ $id = $this->getRecaptchaId();
                         'theme': "<?php echo $this->getTheme(); ?>",
                         'type': "<?php echo $this->getType(); ?>",
                         'size': "invisible",
+                        'badge': 'inline',
                         'callback': function(response) {
                             if (response.length > 0) {
                                 $('cb-<?php echo $id ?>').writeAttribute('value', 'checked');

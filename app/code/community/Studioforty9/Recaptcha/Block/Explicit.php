@@ -223,12 +223,6 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
     public function getButtonSelector($currentRoute, $parentBlockName)
     {
         $buttonsSelectors = Mage::helper('core/unserializeArray')->unserialize($this->_getHelper()->getButtonsSelector());
-        foreach ($buttonsSelectors as $key => $buttonsSelector) {
-            if (false !== strpos($currentRoute, $buttonsSelector['routes'])) {
-                return $buttonsSelector['buttons'];
-            }
-        }
-
         if ($parentBlockName) {
             foreach ($buttonsSelectors as $key => $buttonsSelector) {
                 if (array_key_exists('parent_block_name', $buttonsSelector)
@@ -236,6 +230,12 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
                     && false !== strpos($parentBlockName, $buttonsSelector['parent_block_name'])) {
                     return $buttonsSelector['buttons'];
                 }
+            }
+        }
+
+        foreach ($buttonsSelectors as $key => $buttonsSelector) {
+            if (false !== strpos($currentRoute, $buttonsSelector['routes'])) {
+                return $buttonsSelector['buttons'];
             }
         }
     }

@@ -23,17 +23,16 @@ $id = $this->getRecaptchaId();
         <div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
             <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" style="visibility:hidden; position:absolute; left:-1000000px" />
             <script type="text/javascript">
-                jQuery(document).ready(function(){
-                    jQuery('<?php echo $buttonSelect ?>').attr('id', "el-<?php echo $id; ?>");
-                });
                 <?php if ($this->shouldCallScript()): ?>
                     var recaptchaCallbacks = [];
+                    var buttonsToBind = [];
                     var onloadCallback = function() {
                         recaptchaCallbacks.forEach(function(callback) {
                             callback();
                         });
                     };
                 <?php endif; ?>
+                buttonsToBind.push({'selector':'<?php echo $buttonSelect ?>', 'id':'<?php echo $id; ?>'});
                 recaptchaCallbacks.push(function() {
                     grecaptcha.render("el-<?php echo $id; ?>", {
                         'sitekey': "<?php echo $this->getSiteKey(); ?>",

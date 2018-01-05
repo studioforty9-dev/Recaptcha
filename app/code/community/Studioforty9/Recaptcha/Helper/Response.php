@@ -25,6 +25,7 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
     const INVALID_INPUT_SECRET   = 'invalid-input-secret';
     const MISSING_INPUT_RESPONSE = 'missing-input-response';
     const INVALID_INPUT_RESPONSE = 'invalid-input-response';
+    const BAD_REQUEST            = 'bad-request';
 
     /**
      * @var bool $_success
@@ -44,6 +45,7 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
         self::INVALID_INPUT_SECRET   => 'The secret parameter is invalid or malformed.',
         self::MISSING_INPUT_RESPONSE => 'The response parameter is missing.',
         self::INVALID_INPUT_RESPONSE => 'The response parameter is invalid or malformed.'
+        self::BAD_REQUEST            => 'The request is invalid or malformed.'
     );
 
     /**

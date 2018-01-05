@@ -44,7 +44,7 @@ class Studioforty9_Recaptcha_Helper_Response extends Mage_Core_Helper_Abstract
         self::MISSING_INPUT_SECRET   => 'The secret parameter is missing.',
         self::INVALID_INPUT_SECRET   => 'The secret parameter is invalid or malformed.',
         self::MISSING_INPUT_RESPONSE => 'The response parameter is missing.',
-        self::INVALID_INPUT_RESPONSE => 'The response parameter is invalid or malformed.'
+        self::INVALID_INPUT_RESPONSE => 'The response parameter is invalid or malformed.',
         self::BAD_REQUEST            => 'The request is invalid or malformed.'
     );
 

@@ -1,10 +1,13 @@
 <?php if (Mage::getSingleton('core/session')->getCallRecaptchaScript()): ?>
     <script type="text/javascript">
-        if (typeof buttonsToBind !== 'undefined') {
-            buttonsToBind.forEach(function(button) {
-                jQuery(button.selector).attr('id', "el-" + button.id);
-            });
+        function bindRecaptchaButtons() {
+            if (typeof buttonsToBind !== 'undefined') {
+                buttonsToBind.forEach(function(button) {
+                    jQuery(button.selector).attr('id', "el-" + button.id);
+                });
+            }
         }
+        bindRecaptchaButtons();
     </script>
     <?php echo $this->getRecaptchaScript(); ?>
     <?php Mage::getSingleton('core/session')->setCallRecaptchaScript(false); ?>

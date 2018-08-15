@@ -26,7 +26,7 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
         'ca_ES' => 'ca',
         'zh_CN' => 'zh-CN',
         'zh_HK|zh_TW' => 'zh-TW',
-        'hr_HR' => 'hr',
+        'hr_HR' => 'hr', 
         'cs_CZ' => 'cs',
         'da_DK' => 'da',
         'nl_NL' => 'nl',
@@ -132,7 +132,7 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
      *
      * @return string
      */
-    public function getRecaptchaScript()
+    public function getRecaptchaScript($id)
     {
         if (! $this->_getHelper()->isEnabled()) {
             return '';
@@ -148,7 +148,7 @@ class Studioforty9_Recaptcha_Block_Explicit extends Mage_Core_Block_Template
         }
 
         $query = array(
-            'onload' => 'onloadCallback',
+            'onload' => 'onloadCallback'.$id,
             'render' => 'explicit',
             'hl'     => $lang
         );

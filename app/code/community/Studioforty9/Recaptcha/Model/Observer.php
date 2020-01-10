@@ -30,6 +30,11 @@ class Studioforty9_Recaptcha_Model_Observer
     public function onPostPreDispatch(Varien_Event_Observer $observer)
     {   
         if (! Mage::helper('studioforty9_recaptcha')->isEnabled()) return;
+        
+        //cypressTest
+        if(isset($_COOKIE['Sf9CypressTest']) && $_COOKIE['Sf9CypressTest']) {
+            return;
+        }
 
         /** @var Mage_Core_Controller_Front_Action $controller */
         $controller = $observer->getEvent()->getControllerAction();

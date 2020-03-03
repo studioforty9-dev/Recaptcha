@@ -73,6 +73,11 @@ class Studioforty9_Recaptcha_Helper_Request extends Mage_Core_Helper_Abstract
         );
         
         $client = $this->getHttpClient();
+        if (defined('HHVM_VERSION')) {
+            $client->setConfig(array(
+                'httpversion' => Zend_Http_Client::HTTP_0
+            ));
+        }
         $client->setParameterPost($params);
         $errors = array();
 

@@ -38,7 +38,7 @@ class Studioforty9_Recaptcha_Test_Config_Module extends EcomDev_PHPUnit_Test_Cas
      */
     public function the_module_version_is_correct()
     {
-        $this->assertModuleVersion('1.5.0');
+        $this->assertModuleVersion('1.5.7');
     }
 
     /**

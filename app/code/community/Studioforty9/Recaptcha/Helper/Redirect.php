@@ -106,9 +106,12 @@ class Studioforty9_Recaptcha_Helper_Redirect extends Mage_Core_Helper_Abstract
      */
     protected function getRequestUri()
     {
-    	$visitorData = $this->_session->getData('visitor_data');
-
-    	return ($this->hasRequestUri($visitorData)) ? $visitorData['request_uri'] : Mage::getBaseUrl();
+        if ($this->_session) {
+            $visitorData = $this->_session->getData('visitor_data');
+            return ($this->hasRequestUri($visitorData)) ? $visitorData['request_uri'] : Mage::getBaseUrl();
+        } else {
+            return Mage::getBaseUrl();
+        }
     }
 	
     /**
